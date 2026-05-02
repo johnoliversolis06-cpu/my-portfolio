@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import React, { useState, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "motion/react";
 import { 
   Rocket, 
   Code2, 
   Paintbrush, 
-  Computer, 
-  Link, 
+  Monitor, 
+  Link as LinkIcon, 
   Mail, 
   ChevronDown,
   ExternalLink,
@@ -25,6 +25,11 @@ import {
 } from "lucide-react";
 import { TiltCard } from "./components/TiltCard";
 import { ParallaxBackground } from "./components/ParallaxBackground";
+import { OlliesVaultLogo } from "./components/OlliesVaultLogo";
+
+// Fallback image if profile.png is not uploaded yet. 
+// Once you upload profile.png to src/assets/, this will show your photo.
+const profilePic = "/src/assets/profile.png"; 
 
 // HOW TO IMPORT YOUR IMAGES:
 // 1. Upload your images (PNG/JPG) to the 'src/assets' folder.
@@ -62,7 +67,7 @@ const ProjectCard = ({ project, index, onClick }: { project: Project, index: num
     onClick={onClick}
     className="cursor-pointer"
   >
-    <TiltCard className="flex flex-col h-full bg-glass border-white/5 active:scale-95 transition-transform group">
+    <TiltCard className="flex flex-col h-full border border-white/5 active:scale-95 transition-transform group">
       {/* Visual Header */}
       <div className="relative w-full h-48 mb-6 rounded-xl overflow-hidden bg-white/5 border border-white/10 group">
         {project.image ? (
@@ -299,10 +304,7 @@ const Nav = () => (
     className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-12 py-6 bg-transparent"
   >
     <div className="flex items-center gap-3">
-      <div className="w-8 h-8 bg-kurz-yellow rounded-lg rotate-12 flex-shrink-0 flex items-center justify-center">
-        <Terminal size={18} className="text-space-void" />
-      </div>
-      <span className="font-black text-xl tracking-tight text-white uppercase font-display">Ollie's Vault</span>
+      <OlliesVaultLogo />
     </div>
     <div className="flex items-center gap-6">
       <div className="hidden md:flex items-center gap-8 px-8 py-3 bg-white/10 backdrop-blur-xl border border-white/10 rounded-full text-white">
@@ -314,8 +316,8 @@ const Nav = () => (
       
       {/* Mobile Socials */}
       <div className="flex md:hidden items-center gap-4 text-white/60">
-        <a href="https://github.com/johnoliversolis06" target="_blank"><Computer size={18} /></a>
-        <a href="https://linkedin.com/in/john-oliver-solis-524629318" target="_blank"><Link size={18} /></a>
+        <a href="https://github.com/johnoliversolis06" target="_blank"><Monitor size={18} /></a>
+        <a href="https://linkedin.com/in/john-oliver-solis-524629318" target="_blank"><LinkIcon size={18} /></a>
       </div>
     </div>
   </motion.nav>
@@ -335,6 +337,17 @@ const SectionHeading = ({ children, color = "kurz-yellow" }: { children: React.R
 export default function App() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [selectedCert, setSelectedCert] = useState<Certification | null>(null);
+  
+  // Profile Scroll Animation
+  const aboutRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: aboutRef,
+    offset: ["start end", "end start"]
+  });
+
+  const profileImgOpacity = useTransform(scrollYProgress, [0.35, 0.45], [0, 1]);
+  const cpuIconOpacity = useTransform(scrollYProgress, [0.35, 0.45], [0.3, 0]);
+  const cpuScale = useTransform(scrollYProgress, [0.3, 0.5], [1, 0.8]);
 
   return (
     <div className="relative min-h-screen overflow-x-hidden selection:bg-kurz-yellow selection:text-space-void font-sans">
@@ -343,10 +356,10 @@ export default function App() {
       {/* Fixed Socials */}
       <div className="fixed left-6 bottom-0 z-50 hidden lg:flex flex-col items-center gap-6 after:content-[''] after:w-[1px] after:h-32 after:bg-white/20">
         <motion.a whileHover={{ y: -5, color: '#facc15' }} href="https://github.com/johnoliversolis06" target="_blank" className="text-white/60 hover:text-white transition-colors">
-          <Computer size={20} />
+          <Monitor size={20} />
         </motion.a>
         <motion.a whileHover={{ y: -5, color: '#6366f1' }} href="https://linkedin.com/in/john-oliver-solis-524629318" target="_blank" className="text-white/60 hover:text-white transition-colors">
-          <Link size={20} />
+          <LinkIcon size={20} />
         </motion.a>
         <motion.a whileHover={{ y: -5, color: '#f472b6' }} href="mailto:johnoliversolis06@gmail.com" className="text-white/60 hover:text-white transition-colors">
           <Mail size={20} />
@@ -394,8 +407,12 @@ export default function App() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
-          className="max-w-5xl"
+          className="max-w-5xl flex flex-col items-center"
         >
+          <div className="mb-12">
+            <OlliesVaultLogo size="lg" />
+          </div>
+
           <div className="inline-block bg-kurz-indigo/50 border border-kurz-indigo/30 text-indigo-100 px-4 py-2 rounded-md text-sm font-bold uppercase tracking-wider mb-8">
             Computer Engineering Graduate
           </div>
@@ -438,6 +455,7 @@ export default function App() {
 
       {/* About Section */}
       <motion.section 
+        ref={aboutRef}
         id="about" 
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -447,17 +465,60 @@ export default function App() {
       >
         <div className="grid lg:grid-cols-2 gap-20 items-center">
           <div className="relative flex justify-center items-center">
-            {/* ASSET_GUIDE: Put your profile picture in src/assets/profile.png 
-                Then import it: import profilePic from "./assets/profile.png"
-                And replace the TiltCard content below with <img src={profilePic} ... /> */}
-            <TiltCard className="w-80 h-80 rounded-full bg-gradient-to-tr from-kurz-indigo to-purple-400 p-0 overflow-hidden border-4 border-white/10 flex items-center justify-center">
-              <div className="relative z-10 text-white/20">
-                 <CpuIcon size={160} className="transform rotate-12" />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-kurz-yellow/20 rounded-full blur-3xl animate-pulse" />
+            {/* ASSET_GUIDE: 
+                1. Upload your photo to src/assets/profile.png
+                2. Add at the top of this file: import profilePic from "./assets/profile.png"
+                3. Replace the 'src: ""' below with 'src: profilePic'
+            */}
+            <TiltCard className="w-80 h-80 rounded-full overflow-hidden border-4 border-white/10 flex items-center justify-center relative shadow-2xl bg-gradient-to-tr from-kurz-indigo to-purple-800">
+              
+              {/* Layer 1: Technical Core (CPU) */}
+              <motion.div 
+                style={{ opacity: cpuIconOpacity, scale: cpuScale }}
+                className="relative z-10 text-white flex flex-col items-center just"
+              >
+                 <CpuIcon size={120} className="opacity-20 translate-y-4" />
+                 <span className="font-mono text-[8px] tracking-[0.4em] opacity-30 mt-4">CORE_AUTH_REQ</span>
+              </motion.div>
+
+              {/* Layer 2: Profile Picture (Fades In) */}
+              <motion.div
+                style={{ opacity: profileImgOpacity }}
+                /* ADJUST_SIZE_HERE: Change the padding 'p-2' below to 'p-0' for full size or 'p-10' for smaller. */
+                // className="  inset-0 z-0 flex items-center justify-center p-0"
+                className="relative z-20 flex items-center justify-center w-[200px] h-[400px] p-0"
+              >
+                <img 
+                  src={profilePic}  
+                  alt="John Oliver Solis" 
+                  className="w-full h-full object-cover rounded-full border-2 border-white/10"
+                  onError={(e) => {
+                    // Falls back to a subtle gradient if no image
+                    e.currentTarget.style.display = 'none';
+                  }}
+                />
+              </motion.div>
+
+              {/* Scanning Overlay Effect */}
+              <motion.div 
+                animate={{ y: [-320, 320] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-0 w-full h-[1px] bg-kurz-yellow/40 blur-[1px] z-30 pointer-events-none"
+              />
+              
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none z-25" />
             </TiltCard>
-            <div className="absolute -bottom-6 w-64 h-8 bg-black/40 rounded-[100%] blur-xl -z-10" />
+
+            {/* Orbiting Tech Particles */}
+            <motion.div 
+              animate={{ rotate: 360 }}
+              transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+              className="absolute w-[440px] h-[440px] border border-white/5 rounded-full pointer-events-none"
+            >
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 bg-kurz-cyan rounded-full shadow-[0_0_10px_rgba(34,211,238,0.5)]" />
+            </motion.div>
+            
+            <div className="absolute -bottom-6 w-64 h-8 bg-black/60 rounded-[100%] blur-2xl -z-10" />
           </div>
 
           <div>
@@ -552,7 +613,7 @@ export default function App() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, type: "spring", stiffness: 100 }}
               >
-                <TiltCard className="flex flex-col h-full bg-glass group">
+                <TiltCard className="flex flex-col h-full group">
                   <div className={`w-12 h-12 bg-${group.color} rounded-xl flex-shrink-0 flex items-center justify-center text-space-void mb-6 group-hover:rotate-12 transition-transform`}>
                     <group.icon size={24} />
                   </div>
@@ -742,7 +803,7 @@ export default function App() {
               className="p-8 rounded-3xl bg-glass border border-white/10 flex flex-col items-center gap-4 group"
             >
               <div className="w-12 h-12 bg-kurz-indigo/20 text-kurz-indigo rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Link size={24} />
+                <LinkIcon size={24} />
               </div>
               <span className="text-[10px] font-black uppercase tracking-widest opacity-50">LinkedIn</span>
               <span className="text-[10px] font-bold">Connect</span>
@@ -754,7 +815,7 @@ export default function App() {
               className="p-8 rounded-3xl bg-glass border border-white/10 flex flex-col items-center gap-4 group"
             >
               <div className="w-12 h-12 bg-kurz-yellow/20 text-kurz-yellow rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Computer size={24} />
+                <Monitor size={24} />
               </div>
               <span className="text-[10px] font-black uppercase tracking-widest opacity-50">GitHub</span>
               <span className="text-[10px] font-bold">Code</span>
@@ -762,7 +823,7 @@ export default function App() {
           </div>
 
           <p className="text-slate-500 text-[10px] font-black uppercase tracking-[0.4em]">
-            &copy; 2026 JOAS.DEV &bull; DESIGNED FOR DISCOVERY &bull; JOHN OLIVER SOLIS
+            &copy; 2026 OLLIE'S VAULT &bull; DESIGNED FOR DISCOVERY &bull; JOHN OLIVER SOLIS
           </p>
         </div>
       </footer>
