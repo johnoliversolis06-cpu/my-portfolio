@@ -31,7 +31,7 @@ import { OlliesVaultLogo } from "./components/OlliesVaultLogo";
 
 // Fallback image if profile.png is not uploaded yet. 
 // Once you upload profile.png to src/assets/, this will show your photo.
-const profilePic = "/src/assets/profile.png"; 
+const profilePic = "/profile.png"; // Place your profile.png in the 'public' folder 
 
 // HOW TO IMPORT YOUR IMAGES:
 // 1. Upload your images (PNG/JPG) to the 'src/assets' folder.
@@ -44,6 +44,9 @@ interface ProjectSection {
   content: string;
   bullets?: string[];
   image?: string;
+  images?: string[];
+  videoUrl?: string;
+  videoUrls?: string[];
 }
 
 interface Project {
@@ -83,7 +86,15 @@ const ProjectCard: React.FC<{ project: Project, index: number, onClick: () => vo
       {/* Visual Header */}
       <div className="relative w-full h-48 mb-6 rounded-xl overflow-hidden bg-white/5 border border-white/10 group">
         {project.image ? (
-          <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+          <div className="relative w-full h-full flex items-center justify-center">
+            <img src={project.image} alt={project.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+            {/* 80% Opacity color overlay that disappears on hover */}
+            <div className={`absolute inset-0 ${project.bg} opacity-80 group-hover:opacity-0 transition-opacity duration-500`} />
+            {/* Icon kept on top, fully visible */}
+            <div className="relative z-10 text-white opacity-100 group-hover:scale-110 transition-all duration-500 pointer-events-none">
+              <project.icon size={64} className="drop-shadow-[0_0_30px_rgba(0,0,0,0.8)]" />
+            </div>
+          </div>
         ) : (
           <div className={`w-full h-full ${project.bg} flex items-center justify-center text-space-void transition-colors group-hover:opacity-90`}>
             <project.icon size={64} className="group-hover:rotate-12 transition-transform" />
@@ -123,14 +134,17 @@ const projects: Project[] = [
     color: "text-kurz-yellow",
     bg: "bg-kurz-yellow",
     icon: Target,
-    gallery: [],
+    gallery: ["/assets/arnisense/overview.jpg", "/assets/arnisense/system.jpg", "/assets/arnisense/hardware1.jpg", "/assets/arnisense/software1.jpg", "/assets/arnisense/testing.jpg", "/assets/arnisense/testing2.jpg"],
     features: ["Motion & Impact integration", "Raspberry Pi processing", "Python performance UI"],
-    // videoUrl: "https://www.youtube.com/embed/your-video-id", // Add your video link here!
+    videoUrl: "https://drive.google.com/file/d/1WKlFyYLxQKgMl9-jRXXyVaLRSJUkyl4r/preview",
+    image: "/assets/arnisense/overview.jpg",
     sections: [
       {
         title: "Overview",
         content: "ARNISENSE is a training system designed to improve Arnis performance using real-time sensor feedback. It combines a sensor-equipped dummy and wearable devices to track strike accuracy, timing, and movement, turning traditional training into measurable performance data.",
-        image: "/assets/arnisense/overview.jpg"
+        image: "/assets/arnisense/overview.jpg",
+        images: ["/assets/arnisense/system.jpg"],
+        videoUrl: "https://drive.google.com/file/d/1WKlFyYLxQKgMl9-jRXXyVaLRSJUkyl4r/preview"
       },
       {
         title: "Problem",
@@ -152,7 +166,7 @@ const projects: Project[] = [
           "Analyze strike accuracy and timing",
           "Support consistent and repeatable training sessions"
         ],
-        image: "/assets/arnisense/objectives.jpg"
+        image: "/assets/arnisense/system.jpg"
       },
       {
         title: "System Architecture",
@@ -163,7 +177,7 @@ const projects: Project[] = [
           "Raspberry Pi processes data",
           "Feedback is delivered instantly to the user"
         ],
-        image: "/assets/arnisense/architecture.png"
+        image: "/assets/arnisense/systemarhi.jpg"
       },
       {
         title: "Hardware Components",
@@ -177,18 +191,18 @@ const projects: Project[] = [
           "Vibration motors (haptic feedback)",
           "HC-05 Bluetooth module (communication)"
         ],
-        image: "/assets/arnisense/hardware.jpg"
+        images: ["/assets/arnisense/hardware1.jpg", "/assets/arnisense/hardware2.jpg", "/assets/arnisense/hardwaredev.jpg"]
       },
       {
         title: "Software Stack",
         content: "The software logic is optimized for low-latency processing to ensure that feedback is meaningful.",
         bullets: [
           "Python (system logic)",
-          "Pygame (user interface)",
+          "PySide6 (Qt for Python)",
           "Serial communication (Arduino ↔ Raspberry Pi)",
           "Bluetooth integration for wireless communication"
         ],
-        image: "/assets/arnisense/software.jpg"
+        images: ["/assets/arnisense/software.jpg", "/assets/arnisense/software1.jpg", "/assets/arnisense/software2.jpg"]
       },
       {
         title: "Key Features",
@@ -196,8 +210,8 @@ const projects: Project[] = [
         bullets: [
           "Real-time strike detection and scoring",
           "Motion tracking using wearable sensors",
-          "Multi-feedback system (LED, sound, vibration)",
-          "Gamified training modes",
+          "Live impact force meter",
+          "Timing and cadence tracking",
           "Performance monitoring during sessions"
         ],
         image: "/assets/arnisense/features.jpg"
@@ -205,18 +219,23 @@ const projects: Project[] = [
       {
         title: "System Interface",
         content: "The system provides a real-time interface showing score, timing, and performance metrics, allowing users to monitor their training sessions and adjust their techniques.",
-        image: "/assets/arnisense/ui.jpg"
+        image: "/assets/arnisense/system.jpg",
+        images: ["/assets/arnisense/software.jpg"]
       },
       {
-        title: "Development Process",
-        content: "The engineering cycle focused on precision and hardware durability.",
+        title: "Development Process & Testing",
+        content: "The engineering cycle focused on precision and hardware durability, validated through extensive field testing.",
         bullets: [
           "Hardware and software unit testing",
           "Sensor integration and calibration",
           "System-level testing in training scenarios",
           "Iteration based on actual usage and feedback"
         ],
-        image: "/assets/arnisense/testing.jpg"
+        images: ["/assets/arnisense/testing.jpg", "/assets/arnisense/testing2.jpg"],
+        videoUrls: [
+          "https://drive.google.com/file/d/1WKlFyYLxQKgMl9-jRXXyVaLRSJUkyl4r/preview",
+          "/assets/arnisense/testing.mp4"
+        ]
       }
     ]
   },
@@ -229,13 +248,15 @@ const projects: Project[] = [
     color: "text-kurz-indigo",
     bg: "bg-kurz-indigo",
     icon: ShieldCheck,
-    gallery: [],
+    image: "/assets/epm/overview.jpg",
+    gallery: ["/assets/epm/maindashboard.JPG", "/assets/epm/admincontrol.JPG", "/assets/epm/loginandreg.JPG", "/assets/epm/testingresults.JPG", "/assets/epm/developmenttimeframe.JPG", "/assets/epm/corefeatures.JPG", "/assets/epm/workflow1.JPG"],
     features: ["RBAC Implementation", "SQL Encryption", "Audit Logs"],
     sections: [
       {
         title: "Overview",
         content: "EPM4 Password Vault is a desktop-based credential management system developed to centralize and secure password storage within the Test IT environment. It replaces manual and decentralized workflows with a structured, secure, and efficient system.",
-        image: "/assets/epm/overview.jpg"
+        image: "/assets/epm/overview.jpg",
+        images: ["/assets/epm/maindashboard.JPG"]
       },
       {
         title: "Problem",
@@ -247,7 +268,8 @@ const projects: Project[] = [
           "Lack of tracking and accountability",
           "Dependence on manual documentation"
         ],
-        image: "/assets/epm/problem.jpg"
+        image: "/assets/epm/problem.JPG",
+        images: ["/assets/epm/before.JPG"]
       },
       {
         title: "Solution",
@@ -259,7 +281,7 @@ const projects: Project[] = [
           "Secure password reveal and usage",
           "Automated activity logging"
         ],
-        image: "/assets/epm/solution.jpg"
+        image: "/assets/epm/after.JPG"
       },
       {
         title: "System Workflow",
@@ -270,11 +292,12 @@ const projects: Project[] = [
           "Secure reveal or copy password",
           "Activity logging for every action"
         ],
-        image: "/assets/epm/workflow.png"
+        image: "/assets/epm/workflow1.JPG",
+        images: ["/assets/epm/workflow2.JPG", "/assets/epm/workflow3.JPG"]
       },
       {
         title: "Core Security Features",
-        content: "",
+        content: "Implemented multi-layered security to ensure data integrity and confidentiality.",
         bullets: [
           "Encrypted password storage",
           "Role-Based Access Control (RBAC)",
@@ -282,29 +305,29 @@ const projects: Project[] = [
           "Comprehensive audit logs",
           "Auto-timeout for inactivity"
         ],
-        image: "/assets/epm/security.jpg"
+        image: "/assets/epm/corefeatures.JPG"
       },
       {
         title: "Password Management Features",
-        content: "",
+        content: "Advanced management features for critical engineering credentials.",
         bullets: [
           "Centralized vault system",
           "Smart categorization of credentials",
           "Password strength indicator",
           "Secure reveal and copy functionality"
         ],
-        image: "/assets/epm/features.jpg"
+        image: "/assets/epm/passwordmanagement.JPG"
       },
       {
         title: "User Administration",
-        content: "",
+        content: "Granular control over user permissions and access levels.",
         bullets: [
           "User management system",
           "Approval-based access control",
           "Flexible sharing permissions",
           "Ownership protection of credentials"
         ],
-        image: "/assets/epm/admin.jpg"
+        image: "/assets/epm/admincontrol.JPG"
       },
       {
         title: "System Interface",
@@ -316,22 +339,24 @@ const projects: Project[] = [
           "Secure password viewer",
           "Audit logs interface"
         ],
-        image: "/assets/epm/ui.jpg"
+        image: "/assets/epm/maindashboard.JPG",
+        images: ["/assets/epm/loginandreg.JPG", "/assets/epm/testingresults.JPG"]
       },
       {
         title: "Technology Stack",
-        content: "",
+        content: "Built on a stable foundation for corporate and engineering use.",
         bullets: [
           ".NET Framework 4.0 (desktop application)",
           "C# (application logic)",
           "SQL Server (database management)",
           "SSMS for database administration"
         ],
-        image: "/assets/epm/stack.jpg"
+        image: "/assets/epm/stack.jpg",
+        images: ["/assets/epm/techstack1.jpg", "/assets/epm/techstack2.jpg", "/assets/epm/techstack3.jpg"]
       },
       {
         title: "Build & Testing",
-        content: "",
+        content: "Comprehensive validation phase with extensive test coverage.",
         bullets: [
           "Prototype development and iteration",
           "System migration from initial version",
@@ -339,7 +364,8 @@ const projects: Project[] = [
           "Functional validation of all modules",
           "Documentation and user manual creation"
         ],
-        image: "/assets/epm/testing.jpg"
+        image: "/assets/epm/developmenttimeframe.JPG",
+        images: ["/assets/epm/testingresults.JPG", "/assets/epm/testingresults2.JPG"]
       }
     ]
   },
@@ -352,11 +378,15 @@ const projects: Project[] = [
     color: "text-kurz-green",
     bg: "bg-kurz-green",
     icon: Microchip,
+    image: "/assets/homeauto/overview.jpg",
+    gallery: ["/public/assets/homeauto/finalproduct.JPG", "/public/assets/homeauto/webinterface.JPG", "/public/assets/homeauto/hardware1.JPG", "/public/assets/homeauto/hardware2.JPG", "/public/assets/homeauto/schematicdiagram.JPG"],
     sections: [
       {
         title: "Overview",
         content: "This project is a miniature home automation system built using ESP32, designed to control electrical devices wirelessly through a web interface. It demonstrates how embedded systems and networking can be combined to create simple smart home solutions.",
-        image: "/assets/homeauto/overview.jpg"
+        image: "/assets/homeauto/overview.jpg",
+        images: ["/public/assets/homeauto/finalproduct.JPG"],
+        videoUrl: "/public/assets/homeauto/demo.mp4"
       },
       {
         title: "Problem",
@@ -370,97 +400,70 @@ const projects: Project[] = [
         image: "/assets/homeauto/problem.jpg"
       },
       {
-        title: "Objectives",
-        content: "The project aimed to provide a seamless bridge between a local web server and physical electrical relays.",
+        title: "Design & Process",
+        content: "The development followed an Agile methodology, focusing on iterative prototyping and testing.",
+        image: "/public/assets/homeauto/agile.jpg",
+        images: ["/public/assets/homeauto/prototyping.jpg"]
+      },
+      {
+        title: "3D Modeling & Design",
+        content: "Detailed 3D models were created to visualize the final enclosure and hardware layout.",
         bullets: [
-          "Develop a wireless control system using ESP32",
-          "Create a web-based interface for device control",
-          "Enable real-time ON/OFF switching of appliances",
-          "Implement stable WiFi communication",
-          "Demonstrate a functional smart home prototype"
+          "Enclosure design for component protection",
+          "Space-optimized layout",
+          "Prototyping using 3D modeling tools"
         ],
-        image: "/assets/homeauto/objectives.jpg"
+        image: "/public/assets/homeauto/final3d.JPG",
+        images: ["/public/assets/homeauto/3dmodel.JPG", "/public/assets/homeauto/3dmodel1.JPG", "/public/assets/homeauto/3dmodel2.JPG", "/public/assets/homeauto/3dmodel3.JPG"]
       },
       {
         title: "System Architecture",
-        content: "The ESP32 acts as a web server, allowing users to connect through a browser and control connected devices over a local WiFi network.",
+        content: "The system integrates schematic precision with optimized data flow logic.",
         bullets: [
-          "User connects via browser",
-          "ESP32 hosts web interface",
-          "Commands sent over WiFi",
-          "ESP32 controls relays/output devices"
+          "ESP32 acts as the central web server",
+          "HTTP requests are processed in real-time",
+          "Control signals are sent to relay modules",
+          "Visual feedback provided through the web interface"
         ],
-        image: "/assets/homeauto/architecture.png"
+        image: "/public/assets/homeauto/schematicdiagram.JPG",
+        images: ["/public/assets/homeauto/systemprocessflow.JPG"]
       },
       {
-        title: "Hardware Components",
-        content: "Selected components were integrated into a modular layout for easy maintenance.",
+        title: "Hardware Integration",
+        content: "Multiple hardware versions were built to test stability and reliability.",
         bullets: [
-          "ESP32 microcontroller",
-          "Relay module (for appliance control)",
-          "Power supply module",
-          "Wiring and load connections",
-          "Prototype board / miniature house model"
+          "ESP32 Microcontroller",
+          "5V Relay Modules",
+          "Power Management Circuitry",
+          "Miniature Housing Fabrication"
         ],
-        image: "/assets/homeauto/hardware.jpg"
-      },
-      {
-        title: "Software & Communication",
-        content: "The code utilizes efficient HTTP handling to minimize latency in device response.",
-        bullets: [
-          "Embedded C / Arduino IDE",
-          "ESP32 WiFi library",
-          "HTTP web server implementation",
-          "HTML/CSS interface for control panel",
-          "Client-server communication over local network"
-        ],
-        image: "/assets/homeauto/software.jpg"
-      },
-      {
-        title: "System Features",
-        content: "The interface is designed to be zero-config, working on any device within the same network.",
-        bullets: [
-          "Wireless control via web browser",
-          "Real-time device switching",
-          "Multiple device control interface",
-          "No external app required",
-          "Local network-based communication"
-        ],
-        image: "/assets/homeauto/features.jpg"
+        image: "/public/assets/homeauto/hardware1.JPG",
+        images: ["/public/assets/homeauto/hardware2.JPG", "/public/assets/homeauto/hardware3.JPG", "/public/assets/homeauto/hardware4.JPG", "/public/assets/homeauto/hardware5.JPG", "/public/assets/homeauto/hardware6.JPG", "/public/assets/homeauto/hardware7.JPG"]
       },
       {
         title: "User Interface",
         content: "The system provides a simple web dashboard where users can control connected devices using buttons or toggles in real time.",
-        image: "/assets/homeauto/ui.jpg"
-      },
-      {
-        title: "Build & Testing",
-        content: "Rigorous testing focused on WiFi stability and relay transition relay times.",
-        bullets: [
-          "ESP32 setup and programming",
-          "Relay integration and wiring validation",
-          "WiFi connectivity testing",
-          "Web interface debugging",
-          "Functional testing of device switching"
-        ],
-        image: "/assets/homeauto/testing.jpg"
+        image: "/public/assets/homeauto/webinterface.JPG"
       }
     ]
   },
   {
     title: "AUTOCAB RFID SYSTEM",
-    subtitle: "RFID-Based Shuttle Service Logging System",
-    desc: "An automated RFID-based logging system designed to replace manual shuttle service tracking with a real-time, efficient, and secure data management solution for transportation cooperatives.",
-    longDesc: "AutoCAB is an RFID-based shuttle service logging system that automates vehicle entry and exit tracking within a subdivision. It integrates hardware and a web-based system to provide real-time monitoring, accurate data recording, and centralized management.",
+    subtitle: "RFID Logging System & Project Proposal Documentation",
+    desc: "An automated RFID-based logging system designed to replace manual shuttle service tracking with a real-time, efficient, and secure data management solution.",
+    longDesc: "AutoCAB is an RFID-based shuttle service logging system that automates vehicle entry and exit tracking within a subdivision. This documentation serves as a comprehensive project proposal, detailing the technical architecture, hardware integration, and systematic workflow required for a centralized transportation management solution.",
     tags: ["Arduino", "RFID", "ESP8266", "IoT", "Web System", "Embedded Systems"],
     color: "text-kurz-blue",
     bg: "bg-kurz-blue",
     icon: Bus,
+    image: "/assets/autocab/overview.JPG",
+    gallery: ["/assets/autocab/overview.JPG", "/assets/autocab/systemoverview.JPG", "/assets/autocab/hw1.JPG", "/assets/autocab/schematic.JPG", "/assets/autocab/sdlc.JPG", "/assets/autocab/3dmodel.JPG"],
     sections: [
       {
         title: "Overview",
-        content: "AutoCAB is an RFID-based shuttle service logging system that automates vehicle entry and exit tracking within a subdivision. It integrates hardware and a web-based system to provide real-time monitoring, accurate data recording, and centralized management.",
-        image: "/assets/autocab/overview.jpg"
+        content: "AutoCAB integrates hardware and a web-based system to provide real-time monitoring and accurate data recording for shuttle services.",
+        image: "/assets/autocab/overview.JPG",
+        images: ["/assets/autocab/systemoverview.JPG"]
       },
       {
         title: "Problem",
@@ -469,135 +472,60 @@ const projects: Project[] = [
           "Manual logging is time-consuming",
           "High probability of human error",
           "Lack of real-time monitoring",
-          "Difficult data retrieval and tracking",
-          "No centralized database system"
+          "Difficult data retrieval and tracking"
         ],
         image: "/assets/autocab/problem.jpg"
-      },
-      {
-        title: "Solution",
-        content: "AutoCAB introduces an automated RFID-based logging system integrated with a web database for real-time monitoring and data management.",
-        bullets: [
-          "Automated vehicle identification using RFID",
-          "Real-time data transmission to server",
-          "Centralized web-based database",
-          "Reduced human intervention",
-          "Improved accuracy and efficiency"
-        ],
-        image: "/assets/autocab/solution.jpg"
       },
       {
         title: "System Workflow",
         content: "The system follows a structured process from RFID detection to data storage and monitoring.",
         bullets: [
-          "RFID tag scanning via UHF reader",
-          "Data transmission to microcontroller",
-          "Signal conversion using RS232 Shield",
-          "Processing via Arduino UNO",
-          "Upload to web server through ESP8266",
-          "Storage in centralized database"
+          "RFID tag detection and UID transmission",
+          "Data validation and processing in MCU",
+          "Wireless transmission via ESP8266",
+          "Storage in centralized web database"
         ],
-        image: "/assets/autocab/workflow.png"
+        image: "/assets/autocab/systemflow.JPG",
+        images: ["/assets/autocab/userflowdiagram.JPG", "/assets/autocab/userflowdiagram1.JPG"]
       },
       {
         title: "Core Hardware Components",
-        content: "Key components chosen for durability and communication stability.",
+        content: "High-performance components selected for reliability in transportation environments.",
         bullets: [
-          "UHF RFID Tag (vehicle identification)",
-          "UHF RFID Reader (data acquisition)",
-          "Arduino UNO R3 (main controller)",
-          "ESP8266 Wi-Fi Module (connectivity)",
-          "RS232 Shield (signal conversion)",
-          "S-60-12 Power Supply (power management)"
+          "UHF RFID Reader & Tags",
+          "Arduino UNO R3 Controller",
+          "ESP8266 Wi-Fi Module",
+          "Custom 3D-Printed Enclosures",
+          "Stable Power Management"
         ],
-        image: "/assets/autocab/hardware.jpg"
+        image: "/assets/autocab/hw1.JPG",
+        images: ["/assets/autocab/hw2.JPG", "/assets/autocab/hw3.JPG", "/assets/autocab/hw4.JPG", "/assets/autocab/3dmodel.JPG"]
       },
       {
         title: "System Architecture",
-        content: "The system integrates hardware and software components to ensure seamless data flow from detection to storage.",
+        content: "A multi-layered architecture ensuring seamless data flow and high availability.",
+        image: "/assets/autocab/schematic.JPG",
         bullets: [
-          "RFID-based identification layer",
-          "Microcontroller processing unit",
-          "Wireless communication module",
-          "Web-based server and database",
-          "User interface for monitoring"
-        ],
-        image: "/assets/autocab/architecture.jpg"
+          "RFID Data Acquisition Layer",
+          "Edge Processing Layer (Arduino)",
+          "Cloud Connectivity Layer",
+          "Web Management Portal"
+        ]
       },
       {
-        title: "Data Flow Process",
-        content: "The system processes data dynamically depending on connectivity and system conditions.",
-        bullets: [
-          "RFID tag detection and UID transmission",
-          "Data validation and processing in MCU",
-          "Online mode: upload to server",
-          "Offline mode: local data storage",
-          "Auto-retry for failed uploads",
-          "Periodic system cleanup and maintenance"
-        ],
-        image: "/assets/autocab/dataflow.jpg"
-      },
-      {
-        title: "Web System Features",
-        content: "The AutoCAB system includes a web-based platform for monitoring and management.",
-        bullets: [
-          "User authentication (login/register)",
-          "Dashboard overview of system data",
-          "Logs tracking (Time In/Out, Driver, Passengers)",
-          "Fuel consumption monitoring",
-          "Graphical data visualization",
-          "Settings and account management"
-        ],
-        image: "/assets/autocab/web.jpg"
+        title: "System Development Lifecycle",
+        content: "Developed using the Waterfall SDLC model to ensure rigorous planning and validation.",
+        image: "/assets/autocab/sdlc.JPG"
       },
       {
         title: "User Interface",
-        content: "The web interface provides an intuitive and structured platform for users to manage shuttle data.",
-        bullets: [
-          "Login and authentication system",
-          "Dashboard with navigation modules",
-          "Logs and records management",
-          "Graph and analytics visualization",
-          "User settings and account control"
-        ],
+        content: "The web interface provides an intuitive platform for real-time monitoring and analytics.",
         image: "/assets/autocab/ui.jpg"
       },
       {
         title: "Build & Development",
-        content: "Integration phase involve schematic design and 3D fabrication.",
-        bullets: [
-          "Hardware integration and prototyping",
-          "3D model design and fabrication",
-          "System schematic and circuit design",
-          "Web system development",
-          "Database integration and testing"
-        ],
+        content: "Hardware integration phase including physical prototype assembly and CAD modeling.",
         image: "/assets/autocab/build.jpg"
-      },
-      {
-        title: "Testing & Evaluation",
-        content: "Rigorous evaluation using statistical methods ensured system reliability.",
-        bullets: [
-          "Pre-test and post-test experimental design",
-          "Control vs RFID-based system comparison",
-          "Efficiency and accuracy measurement",
-          "Statistical analysis using T-test and ANOVA",
-          "Validation using 95% confidence level (p < 0.05)"
-        ],
-        image: "/assets/autocab/testing.jpg"
-      },
-      {
-        title: "System Development Lifecycle",
-        content: "The project follows a structured SDLC Waterfall Model to ensure organized development and deployment.",
-        bullets: [
-          "Planning and problem identification",
-          "System analysis and requirements definition",
-          "Design of hardware and software architecture",
-          "Implementation and coding",
-          "Testing and validation",
-          "Maintenance and system improvements"
-        ],
-        image: "/assets/autocab/sdlc.jpg"
       }
     ],
     features: ["RFID Integration", "Web Dashboard", "Real-time Logging"]
@@ -606,131 +534,66 @@ const projects: Project[] = [
     title: "OSAS SECURITY SYSTEM",
     subtitle: "Object Storage with Automated Security and Locking Mechanism",
     desc: "A smart object storage security system designed to protect personal items using multi-layer authentication, sensor-based detection, and automated locking mechanisms.",
-    longDesc: "OSAS (Object Security Automated System) is a hardware-based security solution that integrates password authentication, environmental sensing, and automated locking. It is designed to secure stored items and detect unauthorized access attempts.",
+    longDesc: "OSAS (Object Security Automated System) is an advanced hardware-based security solution. This documentation traces the evolution of the system from a modular prototype to a compact, production-ready enclosure. It integrates keypad authentication, environmental sensing, and servo-actuated locking to ensure high-level security for stored valuables.",
     tags: ["Arduino", "Embedded Systems", "Sensors", "Security", "Automation"],
     color: "text-kurz-red",
     bg: "bg-kurz-red",
     icon: Lock,
+    image: "/assets/osas/overview.jpg",
+    gallery: ["/assets/osas/overview.jpg", "/assets/osas/osasnew.jpg", "/assets/osas/osasnew1.jpg", "/assets/osas/oldosasoverview.jpg", "/assets/osas/oldosasschematics.jpg", "/assets/osas/newosasprototyping.jpg"],
     sections: [
       {
         title: "Overview",
-        content: "OSAS (Object Security Automated System) is a hardware-based security solution that integrates password authentication, environmental sensing, and automated locking. It is designed to secure stored items and detect unauthorized access attempts.",
-        image: "/assets/osas/overview.jpg"
+        content: "OSAS (Object Security Automated System) provides a secure environment for stored items, combining physical barriers with digital authentication and sensory monitoring.",
+        image: "/assets/osas/overview.jpg",
+        images: ["/assets/osas/osasnew.jpg", "/assets/osas/osasnew1.jpg"]
       },
       {
-        title: "Problem",
-        content: "Traditional storage systems lack intelligent security features and real-time protection mechanisms.",
+        title: "Version 1 – Modular Prototype",
+        content: "The initial prototype was built to validate the core logic, featuring an externalized interface and a modular assembly for testing sensor responsiveness.",
         bullets: [
-          "No authentication system for access control",
-          "Vulnerable to unauthorized access",
-          "No alert or intrusion detection system",
-          "Manual locking mechanisms only",
-          "Lack of compact and integrated design"
+          "Password authentication via 4x4 keypad",
+          "Visual status updates via character LCD",
+          "Environmental monitoring for light and distance",
+          "External alert system with high-frequency buzzer"
         ],
-        image: "/assets/osas/problem.jpg"
+        image: "/assets/osas/oldosasoverview.jpg",
+        images: ["/assets/osas/oldosasprototyping.jpg"],
+        videoUrl: "/assets/osas/oldosas.mp4"
       },
       {
-        title: "Solution",
-        content: "OSAS introduces a layered security system combining password authentication, sensors, alarms, and automated locking.",
+        title: "System Architecture & Logic",
+        content: "The system schematic defines the power distribution and signal routing between the microcontroller and the various security modules.",
+        image: "/assets/osas/oldosasschematics.jpg",
         bullets: [
-          "Keypad-based password authentication",
-          "Ultrasonic sensor for intrusion detection",
-          "LDR sensor for light-based tampering detection",
-          "Buzzer for alert system",
-          "Servo motor for automated locking mechanism"
-        ],
-        image: "/assets/osas/solution.jpg"
+          "Arduino-driven central processing",
+          "Servo motor actuation logic",
+          "Non-volatile memory for password storage",
+          "Real-time sensor polling and interrupt handling"
+        ]
       },
       {
-        title: "System Workflow",
-        content: "The system follows a secure interaction flow for both authorized and unauthorized access attempts.",
+        title: "Version 2 – Compact Integration",
+        content: "The second iteration focused on miniaturization and durability, integrating the components into a singular, space-optimized enclosure.",
         bullets: [
-          "User inputs password via keypad",
-          "System verifies credentials",
-          "If correct → unlock via servo motor",
-          "If incorrect → trigger alarm system",
-          "Sensors monitor environment for intrusion",
-          "Alerts activated on suspicious activity"
+          "All-in-one compact housing",
+          "Improved wire management and soldering",
+          "Sturdier deadbolt alignment",
+          "Refined user interface layout"
         ],
-        image: "/assets/osas/workflow.png"
+        image: "/assets/osas/osasnew.jpg",
+        images: ["/assets/osas/osasnew1.jpg"]
       },
       {
-        title: "Version 1 – Prototype Security System",
-        content: "The first version focuses on core functionality and security features with a visible and modular setup.",
+        title: "Prototyping & Build Process",
+        content: "Continuous iteration allowed for the detection of mechanical stress points and the optimization of the locking mechanism's travel distance.",
         bullets: [
-          "4-pin password authentication system",
-          "LCD display for user interface feedback",
-          "Basic servo motor locking mechanism",
-          "Ultrasonic and LDR sensors for detection",
-          "Audible alarm system using buzzer",
-          "External deterrent mechanism for security alerts"
+          "Breadboard validation for circuit paths",
+          "Component mounting and stress testing",
+          "Enclosure fabrication and finishing",
+          "Firmware debugging for error handling"
         ],
-        image: "/assets/osas/v1.jpg"
-      },
-      {
-        title: "Version 2 – Compact Automated System",
-        content: "The second version improves the system with a more compact design, better integration, and enhanced automation.",
-        bullets: [
-          "Compact and optimized hardware layout",
-          "Improved locking mechanism design",
-          "Auto-locking feature after access",
-          "More efficient wiring and enclosure",
-          "Enhanced reliability and responsiveness",
-          "Cleaner and more user-friendly build"
-        ],
-        image: "/assets/osas/v2.jpg"
-      },
-      {
-        title: "Core Components",
-        content: "Embedded hardware components chosen for small footprint and reliability.",
-        bullets: [
-          "Arduino Microcontroller",
-          "4x4 Keypad (password input)",
-          "LCD Display (user interface)",
-          "Ultrasonic Sensor (distance detection)",
-          "LDR Sensor (light detection)",
-          "Servo Motor (locking system)",
-          "Buzzer (alarm system)"
-        ],
-        image: "/assets/osas/components.jpg"
-      },
-      {
-        title: "Key Features",
-        content: " Layered security ensuring high levels of protection for stored valuables.",
-        bullets: [
-          "Multi-layer authentication system",
-          "Real-time intrusion detection",
-          "Automated locking and unlocking",
-          "Visual feedback via LCD display",
-          "Audio alert system",
-          "Compact embedded design (Version 2)"
-        ],
-        image: "/assets/osas/features.jpg"
-      },
-      {
-        title: "Build & Development",
-        content: "Iterative development process from breadboard to finalized enclosure.",
-        bullets: [
-          "Initial breadboard prototyping",
-          "Sensor integration and calibration",
-          "Password logic implementation",
-          "Servo motor control development",
-          "System refinement and compact redesign",
-          "Final enclosure and hardware optimization"
-        ],
-        image: "/assets/osas/build.jpg"
-      },
-      {
-        title: "Improvements Across Versions",
-        content: "Evolution of the project over time focusing on user experience and form factor.",
-        bullets: [
-          "From bulky prototype → compact system",
-          "From manual locking → automated locking",
-          "Improved wiring and stability",
-          "Better response time and reliability",
-          "Cleaner and more professional design"
-        ],
-        image: "/assets/osas/improvements.jpg"
+        images: ["/assets/osas/newosasprototyping.jpg", "/assets/osas/newosasprototyping1.jpg"]
       }
     ],
     features: ["Keypad Security", "Intrusion Sensors", "Auto-Lock Servo"]
@@ -739,183 +602,142 @@ const projects: Project[] = [
     title: "SUMOBOT",
     subtitle: "Autonomous Mini Sumo Robot",
     desc: "A compact autonomous robot designed to detect and push opponents out of the ring using basic sensors and embedded control logic.",
-    longDesc: "This project is a mini sumobot built for robotics competitions. It uses basic sensors and programmed logic to detect opponents and execute pushing strategies within a sumo ring.",
+    longDesc: "This project is a mini sumobot built for robotics competitions. It uses distance sensors and programmed logic to detect opponents and execute aggressive pushing strategies within a restricted circular ring (Dohyo). The development covered mechanical chassis fabrication, motor speed control, and real-time sensor processing.",
     tags: ["Arduino", "Robotics", "Embedded Systems", "Electronics"],
     color: "text-kurz-pink",
     bg: "bg-kurz-pink",
     icon: Zap,
+    image: "/assets/sumobot/overview.jpg",
+    gallery: ["/assets/sumobot/overview.jpg", "/assets/sumobot/1v1.jpg", "/assets/sumobot/combat.jpg", "/assets/sumobot/3dmodel.jpg", "/assets/sumobot/casing.jpg"],
     sections: [
       {
         title: "Overview",
-        content: "This project is a mini sumobot built for robotics competitions. It uses basic sensors and programmed logic to detect opponents and execute pushing strategies within a sumo ring.",
-        image: "/assets/sumobot/overview.jpg"
+        content: "An autonomous combat robot designed for high-stiffness pushing and obstacle detection using embedded intelligence.",
+        image: "/assets/sumobot/overview.jpg",
+        images: ["/assets/sumobot/combat.jpg"],
+        videoUrls: ["/assets/sumobot/sumobotcombat.mp4", "/assets/sumobot/battle.mp4"]
       },
       {
-        title: "Objective",
-        content: "",
+        title: "Technical Drawings & 3D Modeling",
+        content: "Precise dimensions and weight distribution were calculated to ensure maximum traction and stability during collisions.",
         bullets: [
-          "Build a functional autonomous sumobot",
-          "Implement basic opponent detection",
-          "Control movement using motor drivers",
-          "Design a stable and compact chassis"
+          "CAD modeling for chassis components",
+          "Technical drawings for structural assembly",
+          "Balanced center of gravity for improved pushing",
+          "Compact footprint compliant with mini-sumo standards"
         ],
-        image: "/assets/sumobot/objective.jpg"
+        image: "/assets/sumobot/3dmodel.jpg",
+        images: ["/assets/sumobot/drawings.jpg", "/assets/sumobot/drawings1.jpg"]
       },
       {
-        title: "System Setup",
-        content: "The robot uses sensors to detect opponents and a microcontroller to process inputs and control movement through motor drivers.",
+        title: "Fabrication & Assembly",
+        content: "Iterative development of the robot's physical structure, ranging from breadboard prototypes to a finalized durable casing.",
         bullets: [
-          "Ultrasonic sensor for distance detection",
-          "Motor drivers for wheel control",
-          "Microcontroller for decision logic",
-          "Battery-powered system"
+          "Custom-fabricated chassis and wedge",
+          "Integrated wheels and high-torque motors",
+          "Protective casing for electronics",
+          "Wiring optimization and power management"
         ],
-        image: "/assets/sumobot/setup.jpg"
+        image: "/assets/sumobot/casing.jpg",
+        images: ["/assets/sumobot/development1.jpg", "/assets/sumobot/development2.jpg"]
       },
       {
-        title: "Key Features",
-        content: "",
+        title: "System Setup & Programming",
+        content: "The robot uses an autonomous logic loop to search for opponents and engage when detection thresholds are met.",
         bullets: [
-          "Autonomous movement",
-          "Opponent detection using sensors",
-          "Basic attack and search behavior",
-          "Compact and durable design"
+          "Ultrasonic distance sensing for tracking",
+          "PWM-based motor speed control",
+          "Interrupt-driven logic for emergency stops",
+          "Aggressive search and attack algorithms"
         ],
-        image: "/assets/sumobot/features.jpg"
+        image: "/assets/sumobot/setup.jpg",
+        videoUrl: "/assets/sumobot/motorprogrammingtest.mp4"
       },
       {
-        title: "Mechanical Design",
-        content: "The robot features a custom-designed chassis focused on balance and stability during movement and pushing.",
+        title: "Performance Testing",
+        content: "Combat simulations were performed to calibrate sensor sensitivity and motor response speed.",
         bullets: [
-          "Low-profile structure",
-          "Custom casing design",
-          "Balanced weight distribution"
+          "1v1 combat simulations",
+          "Detection range calibration",
+          "Surface traction optimization",
+          "Wedge efficiency testing"
         ],
-        image: "/assets/sumobot/design.jpg"
-      },
-      {
-        title: "Testing",
-        content: "",
-        bullets: [
-          "Movement and control testing",
-          "Sensor response validation",
-          "Basic match simulation"
-        ],
-        image: "/assets/sumobot/testing.jpg"
+        image: "/assets/sumobot/1v1.jpg",
+        images: ["/assets/sumobot/testing.jpg"]
       }
     ],
     features: ["Autonomous movement", "Opponent detection", "Compact Design"]
   },
   {
     title: "PCB PROJECTS",
-    subtitle: "Power Supply & Relay Module Design",
-    desc: "Custom PCB designs including a regulated 9V power supply and a relay module, developed from schematic design to fabrication and testing.",
-    longDesc: "This project involves the design and fabrication of functional PCBs, including a regulated 9V power supply and a relay module. The work covers the full development process from circuit design to physical board testing.",
-    tags: ["PCB Design", "Electronics", "KiCad", "Power Supply", "Hardware"],
+    subtitle: "Custom Board Design & Fabrication",
+    desc: "Custom PCB designs including a regulated 9V power supply, relay modules, and logic-based locking systems, developed using KiCad from schematic to physical testing.",
+    longDesc: "This project showcases the design and fabrication of functional Printed Circuit Boards. Using KiCad, I developed several modules including a regulated 9V power supply, a 4-channel relay module, and a security locking system utilizing discrete logic gates. The process involved schematic capture, PCB layout routing, surface-zone optimization, and hands-on assembly and validation.",
+    tags: ["PCB Design", "Electronics", "KiCad", "Hardware", "Prototyping"],
     color: "text-kurz-orange",
     bg: "bg-kurz-orange",
     icon: Layers,
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1000",
+    gallery: ["/assets/pcb/9vfinal.jpg", "/assets/pcb/relayfinal.jpg", "/assets/pcb/locksystempcb.jpg", "/assets/pcb/9vfrontsilkscreen.JPG", "/assets/pcb/relayschematics.jpg", "/assets/pcb/locksystemschematics.jpg"],
     sections: [
       {
         title: "Overview",
-        content: "This project involves the design and fabrication of functional PCBs, including a regulated 9V power supply and a relay module. The work covers the full development process from circuit design to physical board testing.",
-        image: "/assets/pcb/overview.jpg"
+        content: "A collection of hardware projects focused on circuit efficiency, modular design, and reliable power management.",
+        image: "/assets/pcb/overview.jpg",
+        images: ["/assets/pcb/techstack.jpg"]
       },
       {
-        title: "9V Power Supply Board",
-        content: "A compact power supply circuit designed to convert AC input into a stable and adjustable DC output.",
-        image: "/assets/pcb/psu_overview.jpg"
-      },
-      {
-        title: "Circuit Design",
-        content: "",
+        title: "9V Regulated Power Supply",
+        content: "A robust power module designed to provide a stable 9V DC output from an AC transformer source, featuring ripple filtration and thermal stability.",
         bullets: [
-          "AC input from 220V source",
-          "Step-down transformer (AC to low-voltage AC)",
-          "Bridge rectifier for AC to DC conversion",
-          "Capacitor filtering for ripple reduction",
-          "Voltage regulator for stable output",
-          "Potentiometer for adjustable 0–9V output"
+          "KiCad-designed dual-layer PCB",
+          "Bridge rectification and smoothing capacitors",
+          "Fixed 9V output regulation",
+          "Compact form factor with mounting holes"
         ],
-        image: "/assets/pcb/psu_schematic.png"
+        image: "/assets/pcb/9vfinal.jpg",
+        images: ["/assets/pcb/schematic.jpg", "/assets/pcb/9voutline.JPG", "/assets/pcb/9vwithfilledzone.JPG", "/assets/pcb/9vfrontsilkscreen.JPG"],
+        videoUrl: "/assets/pcb/testing.mp4"
       },
       {
-        title: "System Flow",
-        content: "The circuit follows a standard power conversion process from AC input to regulated DC output.",
-        image: "/assets/pcb/psu_flow.png"
-      },
-      {
-        title: "PCB Layout",
-        content: "The board was designed in a compact 2x2 inch layout, focusing on proper component placement and clean routing.",
+        title: "4-Channel Relay Module",
+        content: "Developed for high-power switching applications, this module allows a microcontroller to control higher voltage loads with optical isolation.",
         bullets: [
-          "Compact 2x2 inch PCB design",
-          "Optimized trace routing",
-          "Proper grounding considerations",
-          "Component spacing for heat and safety"
+          "Discrete transistor-based switching",
+          "Flyback diode protection for inductive loads",
+          "Integrated LED status indicators",
+          "Isolated high-voltage and low-voltage paths"
         ],
-        image: "/assets/pcb/psu_layout.png"
+        image: "/assets/pcb/relayfinal.jpg",
+        images: ["/assets/pcb/relayschematics.jpg", "/assets/pcb/relaybefore.jpg"],
+        videoUrl: "/assets/pcb/relaytesting.mp4"
       },
       {
-        title: "Testing",
-        content: "",
+        title: "Locking System (Logic Gates)",
+        content: "A security logic board that implements complex truth tables using discrete ICs to control physical locking mechanisms.",
         bullets: [
-          "Voltage output verification",
-          "Adjustment testing (0–9V range)",
-          "Ripple and stability checking",
-          "Load testing"
+          "Combinational logic-based authentication",
+          "PCB layout optimized for minimal signal cross-talk",
+          "Integration with external solenoids/servos",
+          "Hardware-level security without microcontrollers"
         ],
-        image: "/assets/pcb/psu_testing.jpg"
+        image: "/assets/pcb/locksystempcb.jpg",
+        images: ["/assets/pcb/locksystemschematics.jpg"]
       },
       {
-        title: "Relay Module Board",
-        content: "A compact relay module designed to control external loads with visual LED indication for each channel.",
-        image: "/assets/pcb/relay_overview.jpg"
-      },
-      {
-        title: "Circuit Design",
-        content: "",
+        title: "Fabrication & Prototyping",
+        content: "The transition from virtual design to physical hardware involved breadboard validation and careful component soldering.",
         bullets: [
-          "Relay switching circuit",
-          "Transistor-based control",
-          "Flyback diode protection",
-          "LED indicators for relay status"
+          "Pre-fabrication breadboard verification",
+          "Component sourcing and layout planning",
+          "Soldering and continuity testing",
+          "Final casing and system integration"
         ],
-        image: "/assets/pcb/relay_schematic.png"
-      },
-      {
-        title: "PCB Layout",
-        content: "The relay module was designed in a 1x2 inch PCB format, optimized for compact control applications.",
-        bullets: [
-          "Compact 1x2 inch design",
-          "Clear separation of control and load paths",
-          "Indicator LED placement",
-          "Simple and clean routing"
-        ],
-        image: "/assets/pcb/relay_layout.png"
-      },
-      {
-        title: "Key Features",
-        content: "",
-        bullets: [
-          "Relay-based load control",
-          "LED status indication",
-          "Compact PCB form factor",
-          "Reliable switching operation"
-        ],
-        image: "/assets/pcb/relay_features.jpg"
-      },
-      {
-        title: "Testing",
-        content: "",
-        bullets: [
-          "Relay switching validation",
-          "LED indicator functionality",
-          "Load testing with external devices"
-        ],
-        image: "/assets/pcb/relay_testing.jpg"
+        image: "/assets/pcb/fabrication.jpg",
+        images: ["/assets/pcb/9vbreadboard.jpg", "/assets/pcb/9vprototyping.jpg", "/assets/pcb/9vtesting.jpg", "/assets/pcb/9vcasing.jpg"]
       }
     ],
-    features: ["Regulated DC Output", "Relay Switching", "Compact Layout"]
+    features: ["KiCad Design", "Power Management", "Discrete Logic"]
   },
   {
     title: "PIXELATED CATS",
@@ -926,12 +748,15 @@ const projects: Project[] = [
     color: "text-kurz-yellow",
     bg: "bg-kurz-yellow",
     icon: Globe,
+    image: "/assets/website/overview.JPG",
+    gallery: ["/assets/website/overview.JPG", "/assets/website/browser.JPG", "/assets/website/dashboard.JPG", "/assets/website/store.JPG", "/assets/website/donation.JPG", "/assets/website/gallery.JPG", "/assets/website/about.JPG"],
     externalUrl: "http://olliesvault.page.gd",
     sections: [
       {
         title: "Overview",
         content: "An experimental web project exploring the boundaries of visual design using WordPress and Elementor. The site features a curated set of interactive components themed around pixelated cat art.",
-        image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=800"
+        image: "/assets/website/overview.JPG",
+        images: ["/assets/website/browser.JPG"]
       },
       {
         title: "Internship Context",
@@ -942,14 +767,74 @@ const projects: Project[] = [
           "Focused on thematic asset consistency",
           "Co-developed within a government IT environment"
         ],
-        image: "https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?auto=format&fit=crop&q=80&w=800"
+        image: "/assets/website/about.JPG"
+      },
+      {
+        title: "Core Interface & Modules",
+        content: "The website includes several themed modules such as a digital store, a donation gateway, and an interactive art gallery.",
+        bullets: [
+          "Interactive dashboard for navigation",
+          "E-commerce module for themed merchandise",
+          "Secure donation tracking simulation",
+          "Responsive gallery for pixel art showcase"
+        ],
+        image: "/assets/website/dashboard.JPG",
+        images: ["/assets/website/store.JPG", "/assets/website/donation.JPG", "/assets/website/gallery.JPG"]
+      },
+      {
+        title: "Technology & Design Stack",
+        content: "The project utilized a mix of visual builders and custom CSS to achieve the desired aesthetic while maintaining professional standards.",
+        bullets: [
+          "WordPress CMS foundation",
+          "Elementor Pro for layout precision",
+          "Custom pixelized CSS filters",
+          "Thematic asset management and optimization"
+        ],
+        images: ["/assets/website/techstack1.jpg", "/assets/website/techstack2.jpg", "/assets/website/techstack3.jpg"]
       }
     ],
     features: ["Thematic Web Design", "Elementor Integration", "Interactive UX"]
   }
 ];
 
-const ProjectModal = ({ project, onClose }: { project: Project | null, onClose: () => void }) => (
+const Lightbox = ({ image, onClose }: { image: string | null, onClose: () => void }) => (
+  <AnimatePresence>
+    {image && (
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 z-[200] flex items-center justify-center p-4 md:p-12 pointer-events-auto"
+      >
+        <div 
+          onClick={onClose}
+          className="absolute inset-0 bg-space-void/90 backdrop-blur-xl cursor-zoom-out"
+        />
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.8, y: 20 }}
+          transition={{ type: "spring", damping: 25, stiffness: 300 }}
+          className="relative max-w-7xl max-h-screen z-10 pointer-events-none flex items-center justify-center"
+        >
+          <img 
+            src={image} 
+            alt="Zoomed view" 
+            className="w-full h-auto max-h-[90vh] object-contain rounded-xl shadow-2xl pointer-events-auto" 
+          />
+          <button 
+            onClick={onClose}
+            className="absolute -top-12 right-0 p-3 bg-white/10 hover:bg-white/20 rounded-full text-white pointer-events-auto transition-colors"
+          >
+            <X size={24} />
+          </button>
+        </motion.div>
+      </motion.div>
+    )}
+  </AnimatePresence>
+);
+
+const ProjectModal = ({ project, onClose, onZoom }: { project: Project | null, onClose: () => void, onZoom: (img: string) => void }) => (
   <AnimatePresence>
     {project && (
       <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10 pointer-events-none">
@@ -968,13 +853,15 @@ const ProjectModal = ({ project, onClose }: { project: Project | null, onClose: 
           className="relative w-full max-w-6xl bg-glass border border-white/10 rounded-[2.5rem] overflow-hidden shadow-2xl flex flex-col h-full max-h-[90vh] text-white pointer-events-auto"
         >
           {/* Header Section */}
-          <div className={`w-full py-20 ${project.bg} relative flex items-center justify-center overflow-hidden shrink-0`}>
+          <div className="w-full py-20 relative flex items-center justify-center overflow-hidden shrink-0">
+             {/* Modal header with only clean image, no extra color overlay besides readability gradient */}
              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 z-10" />
-             {project.image ? (
-               <img src={project.image} alt={project.title} className="absolute inset-0 w-full h-full object-cover opacity-60" />
-             ) : (
-               <project.icon size={180} className="relative z-0 text-white/10" />
+             {project.image && (
+               <img src={project.image} alt={project.title} className="absolute inset-0 w-full h-full object-cover" />
              )}
+             <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
+               <project.icon size={220} className="text-white" />
+             </div>
              <div className="relative z-20 text-center px-6">
                 <h4 className="text-xs font-black uppercase tracking-[0.4em] mb-4 text-white/60">{project.subtitle}</h4>
                 <h2 className="text-5xl md:text-7xl font-display font-black uppercase tracking-tighter text-white">{project.title}</h2>
@@ -1042,35 +929,71 @@ const ProjectModal = ({ project, onClose }: { project: Project | null, onClose: 
                             </ul>
                           )}
                         </div>
-                        {section.image && (
-                          <div className="rounded-2xl overflow-hidden border border-white/10 bg-white/5 shadow-xl group">
-                            <img src={section.image} alt={section.title} className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <div className="space-y-4">
+                          {[...(section.videoUrls || []), ...(section.videoUrl ? [section.videoUrl] : [])].map((vUrl, vIdx) => (
+                            <div key={vIdx} className="rounded-2xl overflow-hidden border border-white/10 bg-black/40 shadow-xl aspect-video">
+                              {vUrl.match(/\.(mp4|webm|ogg)$/i) ? (
+                                <video 
+                                  src={vUrl} 
+                                  controls 
+                                  className="w-full h-full object-contain bg-black"
+                                />
+                              ) : (
+                                <iframe 
+                                  className="w-full h-full"
+                                  src={vUrl}
+                                  title={`${section.title} Video ${vIdx}`}
+                                  frameBorder="0"
+                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                  allowFullScreen
+                                ></iframe>
+                              )}
+                            </div>
+                          ))}
+                          
+                          {/* Media Grid */}
+                          <div className={`grid gap-4 ${((section.images?.length || 0) + (section.image ? 1 : 0)) > 1 ? 'grid-cols-2' : 'grid-cols-1'}`}>
+                            {section.image && (
+                              <div 
+                                onClick={() => onZoom(section.image!)}
+                                className="rounded-2xl overflow-hidden border border-white/10 bg-white/5 shadow-xl group cursor-zoom-in"
+                              >
+                                <img src={section.image} alt={section.title} className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500" />
+                              </div>
+                            )}
+                            {section.images?.map((img, i) => (
+                              <div 
+                                key={i} 
+                                onClick={() => onZoom(img)}
+                                className="rounded-2xl overflow-hidden border border-white/10 bg-white/5 shadow-xl group cursor-zoom-in"
+                              >
+                                <img src={img} alt={`${section.title} media ${i}`} className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500" />
+                              </div>
+                            ))}
                           </div>
-                        )}
+                        </div>
                       </div>
                     </section>
                   ))
                 )}
 
-                {/* Gallery Subsection (Legacy support) */}
-                {(!project.sections || project.sections.length === 0) && (
+                {/* Gallery Subsection */}
+                {project.gallery && project.gallery.length > 0 && (
                   <section>
                     <div className="flex items-center gap-3 mb-8">
-                      <h3 className="text-sm font-black uppercase tracking-widest text-white/40">Visual Documentation</h3>
+                      <div className="w-1.5 h-6 bg-kurz-yellow rounded-full" />
+                      <h3 className="text-xl font-bold font-display uppercase tracking-widest text-white/80">Visual Gallery</h3>
                     </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                      {project.gallery && project.gallery.length > 0 ? (
-                        project.gallery.map((img, i) => (
-                          <div key={i} className="aspect-video bg-white/5 rounded-3xl overflow-hidden border border-white/10 group">
-                            <img src={img} alt={`Exhibition ${i}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                          </div>
-                        ))
-                      ) : (
-                        <div className="col-span-full h-64 bg-white/[0.02] border border-dashed border-white/10 rounded-3xl flex flex-col items-center justify-center text-white/10 space-y-4">
-                          <Paintbrush size={48} className="opacity-20" />
-                          <span className="font-mono text-xs uppercase tracking-widest">[ VISUAL_ASSETS_PENDING ]</span>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {project.gallery.map((img, i) => (
+                        <div 
+                          key={i} 
+                          onClick={() => onZoom(img)}
+                          className="aspect-video bg-white/5 rounded-2xl overflow-hidden border border-white/10 group cursor-zoom-in"
+                        >
+                          <img src={img} alt={`${project.title} gallery ${i}`} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                         </div>
-                      )}
+                      ))}
                     </div>
                   </section>
                 )}
@@ -1172,7 +1095,7 @@ const Nav = ({ activeSection }: { activeSection: string }) => (
       
       {/* Mobile Socials */}
       <div className="flex md:hidden items-center gap-4 text-white/60">
-        <a href="https://github.com/johnoliversolis06" target="_blank"><Monitor size={18} /></a>
+        <a href="https://github.com/johnoliversolis06-cpu" target="_blank"><Monitor size={18} /></a>
         <a href="https://linkedin.com/in/john-oliver-solis-524629318" target="_blank"><LinkIcon size={18} /></a>
       </div>
     </div>
@@ -1193,6 +1116,7 @@ const SectionHeading = ({ children, color = "kurz-yellow" }: { children: React.R
 export default function App() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [selectedCert, setSelectedCert] = useState<Certification | null>(null);
+  const [zoomedImage, setZoomedImage] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState("home");
   
   // Profile Scroll Animation
@@ -1238,7 +1162,7 @@ export default function App() {
       <Nav activeSection={activeSection} />
       {/* Fixed Socials */}
       <div className="fixed left-6 bottom-0 z-50 hidden lg:flex flex-col items-center gap-6 after:content-[''] after:w-[1px] after:h-32 after:bg-white/20">
-        <motion.a whileHover={{ y: -5, color: '#facc15' }} href="https://github.com/johnoliversolis06" target="_blank" className="text-white/60 hover:text-white transition-colors">
+        <motion.a whileHover={{ y: -5, color: '#facc15' }} href="https://github.com/johnoliversolis06-cpu" target="_blank" className="text-white/60 hover:text-white transition-colors">
           <Monitor size={20} />
         </motion.a>
         <motion.a whileHover={{ y: -5, color: '#6366f1' }} href="https://linkedin.com/in/john-oliver-solis-524629318" target="_blank" className="text-white/60 hover:text-white transition-colors">
@@ -1250,7 +1174,14 @@ export default function App() {
       </div>
 
       {/* Project Exhibition Modal */}
-      <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+      <ProjectModal 
+        project={selectedProject} 
+        onClose={() => setSelectedProject(null)} 
+        onZoom={(img) => setZoomedImage(img)}
+      />
+
+      {/* Global Image Lightbox */}
+      <Lightbox image={zoomedImage} onClose={() => setZoomedImage(null)} />
 
       {/* Certification Preview Modal */}
       <AnimatePresence>
@@ -1372,7 +1303,7 @@ export default function App() {
               {/* Layer 2: Profile Picture (Fades In) */}
               <motion.div
                 style={{ opacity: profileImgOpacity }}
-                className="relative z-20 flex items-center justify-center w-[200px] h-[400px] p-0"
+                className="relative z-20 flex items-center justify-center w-[200px] h-[200px] p-0"
               >
                 <img 
                   src={profilePic}
@@ -1628,10 +1559,10 @@ export default function App() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
-                  { title: "TESDA Programming NC IV", image: undefined },
-                  { title: "DICT: JavaScript", image: undefined },
-                  { title: "Amkor: Process Control", image: undefined },
-                  { title: "IP Networking", image: undefined }
+                  { title: "TESDA Programming NC IV", image: "/assets/certs/tesdaprogrammingnciv.jpg" },
+                  { title: "DICT: JavaScript Essentials", image: "/assets/certs/javascriptessentialsfromcisconetworkingacademy.JPG" },
+                  { title: "DICT: Cybersecurity 101", image: "/assets/certs/dictcybersecurity101.JPG" },
+                  { title: "IP Networking Essentials", image: "/assets/certs/ipnetworkingessentialwithbasicciscocommandsfromdict.jpg" }
                 ].map((cert, i) => (
                   <motion.div 
                     key={i} 
@@ -1695,7 +1626,7 @@ export default function App() {
               <span className="text-[10px] font-bold">Connect</span>
             </motion.a>
             <motion.a 
-              href="https://github.com/johnoliversolis06"
+              href="https://github.com/johnoliversolis06-cpu"
               target="_blank"
               whileHover={{ y: -5 }}
               className="p-8 rounded-3xl bg-glass border border-white/10 flex flex-col items-center gap-4 group"
