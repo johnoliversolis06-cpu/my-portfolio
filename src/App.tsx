@@ -677,7 +677,7 @@ const projects: Project[] = [
     color: "text-kurz-orange",
     bg: "bg-kurz-orange",
     icon: Layers,
-    image: "/assets/pcb/overview.jpg",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1000",
     gallery: ["/assets/pcb/9vfinal.jpg", "/assets/pcb/relayfinal.jpg", "/assets/pcb/locksystempcb.jpg", "/assets/pcb/9vfrontsilkscreen.JPG", "/assets/pcb/relayschematics.jpg", "/assets/pcb/locksystemschematics.jpg"],
     sections: [
       {
