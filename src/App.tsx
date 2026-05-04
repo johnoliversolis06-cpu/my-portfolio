@@ -31,7 +31,7 @@ import { OlliesVaultLogo } from "./components/OlliesVaultLogo";
 
 // Fallback image if profile.png is not uploaded yet. 
 // Once you upload profile.png to src/assets/, this will show your photo.
-const profilePic = "profile.png"; // Place your profile.png in the 'public' folder 
+const profilePic = "assets/profile.png"; // Place your profile.png in the 'public' folder 
 
 // HOW TO IMPORT YOUR IMAGES:
 // 1. Upload your images (PNG/JPG) to the 'src/assets' folder.
@@ -1303,7 +1303,7 @@ export default function App() {
               {/* Layer 2: Profile Picture (Fades In) */}
               <motion.div
                 style={{ opacity: profileImgOpacity }}
-                className="relative z-20 flex items-center justify-center w-[200px] h-[200px] p-0"
+                className="relative z-20 flex items-center justify-center w-[200px] h-[400px] p-0"
               >
                 <img 
                   src={profilePic}
