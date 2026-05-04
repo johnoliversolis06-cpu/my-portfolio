@@ -700,7 +700,7 @@ const projects: Project[] = [
         videoUrl: "assets/pcb/testing.mp4"
       },
       {
-        title: "4-Channel Relay Module",
+        title: "Relay Module",
         content: "Developed for high-power switching applications, this module allows a microcontroller to control higher voltage loads with optical isolation.",
         bullets: [
           "Discrete transistor-based switching",
@@ -1250,7 +1250,7 @@ export default function App() {
               View Projects <Rocket size={18} />
             </a>
             <a 
-              href="/resume.pdf" 
+              href="./resume.pdf" 
               download="Ollie_Solis_Resume.pdf"
               className="btn-3d-indigo tracking-widest uppercase text-sm flex items-center gap-2 text-white no-underline"
             >
