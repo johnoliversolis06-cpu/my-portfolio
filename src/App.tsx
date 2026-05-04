@@ -672,7 +672,7 @@ const projects: Project[] = [
     title: "PCB PROJECTS",
     subtitle: "Custom Board Design & Fabrication",
     desc: "Custom PCB designs including a regulated 9V power supply, relay modules, and logic-based locking systems, developed using KiCad from schematic to physical testing.",
-    longDesc: "This project showcases the design and fabrication of functional Printed Circuit Boards. Using KiCad, I developed several modules including a regulated 9V power supply, a 4-channel relay module, and a security locking system utilizing discrete logic gates. The process involved schematic capture, PCB layout routing, surface-zone optimization, and hands-on assembly and validation.",
+    longDesc: "This project showcases the design and fabrication of functional Printed Circuit Boards. Using KiCad, I developed several modules including a regulated 9V power supply, a relay module, and a security locking system utilizing discrete logic gates. The process involved schematic capture, PCB layout routing, surface-zone optimization, and hands-on assembly and validation.",
     tags: ["PCB Design", "Electronics", "KiCad", "Hardware", "Prototyping"],
     color: "text-kurz-orange",
     bg: "bg-kurz-orange",
