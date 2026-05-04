@@ -31,7 +31,7 @@ import { OlliesVaultLogo } from "./components/OlliesVaultLogo";
 
 // Fallback image if profile.png is not uploaded yet. 
 // Once you upload profile.png to src/assets/, this will show your photo.
-const profilePic = "/profile.png"; // Place your profile.png in the 'public' folder 
+const profilePic = "profile.png"; // Place your profile.png in the 'public' folder 
 
 // HOW TO IMPORT YOUR IMAGES:
 // 1. Upload your images (PNG/JPG) to the 'src/assets' folder.
@@ -134,16 +134,16 @@ const projects: Project[] = [
     color: "text-kurz-yellow",
     bg: "bg-kurz-yellow",
     icon: Target,
-    gallery: ["/assets/arnisense/overview.jpg", "/assets/arnisense/system.jpg", "/assets/arnisense/hardware1.jpg", "/assets/arnisense/software1.jpg", "/assets/arnisense/testing.jpg", "/assets/arnisense/testing2.jpg"],
+    gallery: ["assets/arnisense/overview.jpg", "assets/arnisense/system.jpg", "assets/arnisense/hardware1.jpg", "assets/arnisense/software1.jpg", "assets/arnisense/testing.jpg", "assets/arnisense/testing2.jpg"],
     features: ["Motion & Impact integration", "Raspberry Pi processing", "Python performance UI"],
     videoUrl: "https://drive.google.com/file/d/1WKlFyYLxQKgMl9-jRXXyVaLRSJUkyl4r/preview",
-    image: "/assets/arnisense/overview.jpg",
+    image: "assets/arnisense/overview.jpg",
     sections: [
       {
         title: "Overview",
         content: "ARNISENSE is a training system designed to improve Arnis performance using real-time sensor feedback. It combines a sensor-equipped dummy and wearable devices to track strike accuracy, timing, and movement, turning traditional training into measurable performance data.",
-        image: "/assets/arnisense/overview.jpg",
-        images: ["/assets/arnisense/system.jpg"],
+        image: "assets/arnisense/overview.jpg",
+        images: ["assets/arnisense/system.jpg"],
         videoUrl: "https://drive.google.com/file/d/1WKlFyYLxQKgMl9-jRXXyVaLRSJUkyl4r/preview"
       },
       {
@@ -154,7 +154,7 @@ const projects: Project[] = [
           "Limited feedback during solo training",
           "Difficult to track improvement over time"
         ],
-        image: "/assets/arnisense/problem.jpg"
+        image: "assets/arnisense/problem.jpg"
       },
       {
         title: "Objectives",
@@ -166,7 +166,7 @@ const projects: Project[] = [
           "Analyze strike accuracy and timing",
           "Support consistent and repeatable training sessions"
         ],
-        image: "/assets/arnisense/system.jpg"
+        image: "assets/arnisense/system.jpg"
       },
       {
         title: "System Architecture",
@@ -177,7 +177,7 @@ const projects: Project[] = [
           "Raspberry Pi processes data",
           "Feedback is delivered instantly to the user"
         ],
-        image: "/assets/arnisense/systemarhi.jpg"
+        image: "assets/arnisense/systemarhi.jpg"
       },
       {
         title: "Hardware Components",
@@ -191,7 +191,7 @@ const projects: Project[] = [
           "Vibration motors (haptic feedback)",
           "HC-05 Bluetooth module (communication)"
         ],
-        images: ["/assets/arnisense/hardware1.jpg", "/assets/arnisense/hardware2.jpg", "/assets/arnisense/hardwaredev.jpg"]
+        images: ["assets/arnisense/hardware1.jpg", "assets/arnisense/hardware2.jpg", "assets/arnisense/hardwaredev.jpg"]
       },
       {
         title: "Software Stack",
@@ -202,7 +202,7 @@ const projects: Project[] = [
           "Serial communication (Arduino ↔ Raspberry Pi)",
           "Bluetooth integration for wireless communication"
         ],
-        images: ["/assets/arnisense/software.jpg", "/assets/arnisense/software1.jpg", "/assets/arnisense/software2.jpg"]
+        images: ["assets/arnisense/software.jpg", "assets/arnisense/software1.jpg", "assets/arnisense/software2.jpg"]
       },
       {
         title: "Key Features",
@@ -214,13 +214,13 @@ const projects: Project[] = [
           "Timing and cadence tracking",
           "Performance monitoring during sessions"
         ],
-        image: "/assets/arnisense/features.jpg"
+        image: "assets/arnisense/features.jpg"
       },
       {
         title: "System Interface",
         content: "The system provides a real-time interface showing score, timing, and performance metrics, allowing users to monitor their training sessions and adjust their techniques.",
-        image: "/assets/arnisense/system.jpg",
-        images: ["/assets/arnisense/software.jpg"]
+        image: "assets/arnisense/system.jpg",
+        images: ["assets/arnisense/software.jpg"]
       },
       {
         title: "Development Process & Testing",
@@ -231,10 +231,10 @@ const projects: Project[] = [
           "System-level testing in training scenarios",
           "Iteration based on actual usage and feedback"
         ],
-        images: ["/assets/arnisense/testing.jpg", "/assets/arnisense/testing2.jpg"],
+        images: ["assets/arnisense/testing.jpg", "assets/arnisense/testing2.jpg"],
         videoUrls: [
           "https://drive.google.com/file/d/1WKlFyYLxQKgMl9-jRXXyVaLRSJUkyl4r/preview",
-          "/assets/arnisense/testing.mp4"
+          "assets/arnisense/testing.mp4"
         ]
       }
     ]
@@ -248,15 +248,15 @@ const projects: Project[] = [
     color: "text-kurz-indigo",
     bg: "bg-kurz-indigo",
     icon: ShieldCheck,
-    image: "/assets/epm/overview.jpg",
-    gallery: ["/assets/epm/maindashboard.JPG", "/assets/epm/admincontrol.JPG", "/assets/epm/loginandreg.JPG", "/assets/epm/testingresults.JPG", "/assets/epm/developmenttimeframe.JPG", "/assets/epm/corefeatures.JPG", "/assets/epm/workflow1.JPG"],
+    image: "assets/epm/overview.jpg",
+    gallery: ["assets/epm/maindashboard.JPG", "assets/epm/admincontrol.JPG", "assets/epm/loginandreg.JPG", "assets/epm/testingresults.JPG", "assets/epm/developmenttimeframe.JPG", "assets/epm/corefeatures.JPG", "assets/epm/workflow1.JPG"],
     features: ["RBAC Implementation", "SQL Encryption", "Audit Logs"],
     sections: [
       {
         title: "Overview",
         content: "EPM4 Password Vault is a desktop-based credential management system developed to centralize and secure password storage within the Test IT environment. It replaces manual and decentralized workflows with a structured, secure, and efficient system.",
-        image: "/assets/epm/overview.jpg",
-        images: ["/assets/epm/maindashboard.JPG"]
+        image: "assets/epm/overview.jpg",
+        images: ["assets/epm/maindashboard.JPG"]
       },
       {
         title: "Problem",
@@ -268,8 +268,8 @@ const projects: Project[] = [
           "Lack of tracking and accountability",
           "Dependence on manual documentation"
         ],
-        image: "/assets/epm/problem.JPG",
-        images: ["/assets/epm/before.JPG"]
+        image: "assets/epm/problem.JPG",
+        images: ["assets/epm/before.JPG"]
       },
       {
         title: "Solution",
@@ -281,7 +281,7 @@ const projects: Project[] = [
           "Secure password reveal and usage",
           "Automated activity logging"
         ],
-        image: "/assets/epm/after.JPG"
+        image: "assets/epm/after.JPG"
       },
       {
         title: "System Workflow",
@@ -292,8 +292,8 @@ const projects: Project[] = [
           "Secure reveal or copy password",
           "Activity logging for every action"
         ],
-        image: "/assets/epm/workflow1.JPG",
-        images: ["/assets/epm/workflow2.JPG", "/assets/epm/workflow3.JPG"]
+        image: "assets/epm/workflow1.JPG",
+        images: ["assets/epm/workflow2.JPG", "assets/epm/workflow3.JPG"]
       },
       {
         title: "Core Security Features",
@@ -305,7 +305,7 @@ const projects: Project[] = [
           "Comprehensive audit logs",
           "Auto-timeout for inactivity"
         ],
-        image: "/assets/epm/corefeatures.JPG"
+        image: "assets/epm/corefeatures.JPG"
       },
       {
         title: "Password Management Features",
@@ -316,7 +316,7 @@ const projects: Project[] = [
           "Password strength indicator",
           "Secure reveal and copy functionality"
         ],
-        image: "/assets/epm/passwordmanagement.JPG"
+        image: "assets/epm/passwordmanagement.JPG"
       },
       {
         title: "User Administration",
@@ -327,7 +327,7 @@ const projects: Project[] = [
           "Flexible sharing permissions",
           "Ownership protection of credentials"
         ],
-        image: "/assets/epm/admincontrol.JPG"
+        image: "assets/epm/admincontrol.JPG"
       },
       {
         title: "System Interface",
@@ -339,8 +339,8 @@ const projects: Project[] = [
           "Secure password viewer",
           "Audit logs interface"
         ],
-        image: "/assets/epm/maindashboard.JPG",
-        images: ["/assets/epm/loginandreg.JPG", "/assets/epm/testingresults.JPG"]
+        image: "assets/epm/maindashboard.JPG",
+        images: ["assets/epm/loginandreg.JPG", "assets/epm/testingresults.JPG"]
       },
       {
         title: "Technology Stack",
@@ -351,8 +351,8 @@ const projects: Project[] = [
           "SQL Server (database management)",
           "SSMS for database administration"
         ],
-        image: "/assets/epm/stack.jpg",
-        images: ["/assets/epm/techstack1.jpg", "/assets/epm/techstack2.jpg", "/assets/epm/techstack3.jpg"]
+        image: "assets/epm/stack.jpg",
+        images: ["assets/epm/techstack1.jpg", "assets/epm/techstack2.jpg", "assets/epm/techstack3.jpg"]
       },
       {
         title: "Build & Testing",
@@ -364,8 +364,8 @@ const projects: Project[] = [
           "Functional validation of all modules",
           "Documentation and user manual creation"
         ],
-        image: "/assets/epm/developmenttimeframe.JPG",
-        images: ["/assets/epm/testingresults.JPG", "/assets/epm/testingresults2.JPG"]
+        image: "assets/epm/developmenttimeframe.JPG",
+        images: ["assets/epm/testingresults.JPG", "assets/epm/testingresults2.JPG"]
       }
     ]
   },
@@ -378,15 +378,15 @@ const projects: Project[] = [
     color: "text-kurz-green",
     bg: "bg-kurz-green",
     icon: Microchip,
-    image: "/assets/homeauto/overview.jpg",
-    gallery: ["/public/assets/homeauto/finalproduct.JPG", "/public/assets/homeauto/webinterface.JPG", "/public/assets/homeauto/hardware1.JPG", "/public/assets/homeauto/hardware2.JPG", "/public/assets/homeauto/schematicdiagram.JPG"],
+    image: "assets/homeauto/overview.jpg",
+    gallery: ["assets/homeauto/finalproduct.JPG", "assets/homeauto/webinterface.JPG", "assets/homeauto/hardware1.JPG", "assets/homeauto/hardware2.JPG", "assets/homeauto/schematicdiagram.JPG"],
     sections: [
       {
         title: "Overview",
         content: "This project is a miniature home automation system built using ESP32, designed to control electrical devices wirelessly through a web interface. It demonstrates how embedded systems and networking can be combined to create simple smart home solutions.",
-        image: "/assets/homeauto/overview.jpg",
-        images: ["/public/assets/homeauto/finalproduct.JPG"],
-        videoUrl: "/public/assets/homeauto/demo.mp4"
+        image: "assets/homeauto/overview.jpg",
+        images: ["assets/homeauto/finalproduct.JPG"],
+        videoUrl: "assets/homeauto/demo.mp4"
       },
       {
         title: "Problem",
@@ -397,13 +397,13 @@ const projects: Project[] = [
           "Lack of centralized control system",
           "Inconvenience in managing multiple devices"
         ],
-        image: "/assets/homeauto/problem.jpg"
+        image: "assets/homeauto/problem.jpg"
       },
       {
         title: "Design & Process",
         content: "The development followed an Agile methodology, focusing on iterative prototyping and testing.",
-        image: "/public/assets/homeauto/agile.jpg",
-        images: ["/public/assets/homeauto/prototyping.jpg"]
+        image: "assets/homeauto/agile.jpg",
+        images: ["assets/homeauto/prototyping.jpg"]
       },
       {
         title: "3D Modeling & Design",
@@ -413,8 +413,8 @@ const projects: Project[] = [
           "Space-optimized layout",
           "Prototyping using 3D modeling tools"
         ],
-        image: "/public/assets/homeauto/final3d.JPG",
-        images: ["/public/assets/homeauto/3dmodel.JPG", "/public/assets/homeauto/3dmodel1.JPG", "/public/assets/homeauto/3dmodel2.JPG", "/public/assets/homeauto/3dmodel3.JPG"]
+        image: "assets/homeauto/final3d.JPG",
+        images: ["assets/homeauto/3dmodel.JPG", "assets/homeauto/3dmodel1.JPG", "assets/homeauto/3dmodel2.JPG", "assets/homeauto/3dmodel3.JPG"]
       },
       {
         title: "System Architecture",
@@ -425,8 +425,8 @@ const projects: Project[] = [
           "Control signals are sent to relay modules",
           "Visual feedback provided through the web interface"
         ],
-        image: "/public/assets/homeauto/schematicdiagram.JPG",
-        images: ["/public/assets/homeauto/systemprocessflow.JPG"]
+        image: "assets/homeauto/schematicdiagram.JPG",
+        images: ["assets/homeauto/systemprocessflow.JPG"]
       },
       {
         title: "Hardware Integration",
@@ -437,13 +437,13 @@ const projects: Project[] = [
           "Power Management Circuitry",
           "Miniature Housing Fabrication"
         ],
-        image: "/public/assets/homeauto/hardware1.JPG",
-        images: ["/public/assets/homeauto/hardware2.JPG", "/public/assets/homeauto/hardware3.JPG", "/public/assets/homeauto/hardware4.JPG", "/public/assets/homeauto/hardware5.JPG", "/public/assets/homeauto/hardware6.JPG", "/public/assets/homeauto/hardware7.JPG"]
+        image: "assets/homeauto/hardware1.JPG",
+        images: ["assets/homeauto/hardware2.JPG", "assets/homeauto/hardware3.JPG", "assets/homeauto/hardware4.JPG", "assets/homeauto/hardware5.JPG", "assets/homeauto/hardware6.JPG", "assets/homeauto/hardware7.JPG"]
       },
       {
         title: "User Interface",
         content: "The system provides a simple web dashboard where users can control connected devices using buttons or toggles in real time.",
-        image: "/public/assets/homeauto/webinterface.JPG"
+        image: "assets/homeauto/webinterface.JPG"
       }
     ]
   },
@@ -456,14 +456,14 @@ const projects: Project[] = [
     color: "text-kurz-blue",
     bg: "bg-kurz-blue",
     icon: Bus,
-    image: "/assets/autocab/overview.JPG",
-    gallery: ["/assets/autocab/overview.JPG", "/assets/autocab/systemoverview.JPG", "/assets/autocab/hw1.JPG", "/assets/autocab/schematic.JPG", "/assets/autocab/sdlc.JPG", "/assets/autocab/3dmodel.JPG"],
+    image: "assets/autocab/overview.JPG",
+    gallery: ["assets/autocab/overview.JPG", "assets/autocab/systemoverview.JPG", "assets/autocab/hw1.JPG", "assets/autocab/schematic.JPG", "assets/autocab/sdlc.JPG", "assets/autocab/3dmodel.JPG"],
     sections: [
       {
         title: "Overview",
         content: "AutoCAB integrates hardware and a web-based system to provide real-time monitoring and accurate data recording for shuttle services.",
-        image: "/assets/autocab/overview.JPG",
-        images: ["/assets/autocab/systemoverview.JPG"]
+        image: "assets/autocab/overview.JPG",
+        images: ["assets/autocab/systemoverview.JPG"]
       },
       {
         title: "Problem",
@@ -474,7 +474,7 @@ const projects: Project[] = [
           "Lack of real-time monitoring",
           "Difficult data retrieval and tracking"
         ],
-        image: "/assets/autocab/problem.jpg"
+        image: "assets/autocab/problem.jpg"
       },
       {
         title: "System Workflow",
@@ -485,8 +485,8 @@ const projects: Project[] = [
           "Wireless transmission via ESP8266",
           "Storage in centralized web database"
         ],
-        image: "/assets/autocab/systemflow.JPG",
-        images: ["/assets/autocab/userflowdiagram.JPG", "/assets/autocab/userflowdiagram1.JPG"]
+        image: "assets/autocab/systemflow.JPG",
+        images: ["assets/autocab/userflowdiagram.JPG", "assets/autocab/userflowdiagram1.JPG"]
       },
       {
         title: "Core Hardware Components",
@@ -498,13 +498,13 @@ const projects: Project[] = [
           "Custom 3D-Printed Enclosures",
           "Stable Power Management"
         ],
-        image: "/assets/autocab/hw1.JPG",
-        images: ["/assets/autocab/hw2.JPG", "/assets/autocab/hw3.JPG", "/assets/autocab/hw4.JPG", "/assets/autocab/3dmodel.JPG"]
+        image: "assets/autocab/hw1.JPG",
+        images: ["assets/autocab/hw2.JPG", "assets/autocab/hw3.JPG", "assets/autocab/hw4.JPG", "assets/autocab/3dmodel.JPG"]
       },
       {
         title: "System Architecture",
         content: "A multi-layered architecture ensuring seamless data flow and high availability.",
-        image: "/assets/autocab/schematic.JPG",
+        image: "assets/autocab/schematic.JPG",
         bullets: [
           "RFID Data Acquisition Layer",
           "Edge Processing Layer (Arduino)",
@@ -515,17 +515,17 @@ const projects: Project[] = [
       {
         title: "System Development Lifecycle",
         content: "Developed using the Waterfall SDLC model to ensure rigorous planning and validation.",
-        image: "/assets/autocab/sdlc.JPG"
+        image: "assets/autocab/sdlc.JPG"
       },
       {
         title: "User Interface",
         content: "The web interface provides an intuitive platform for real-time monitoring and analytics.",
-        image: "/assets/autocab/ui.jpg"
+        image: "assets/autocab/ui.jpg"
       },
       {
         title: "Build & Development",
         content: "Hardware integration phase including physical prototype assembly and CAD modeling.",
-        image: "/assets/autocab/build.jpg"
+        image: "assets/autocab/build.jpg"
       }
     ],
     features: ["RFID Integration", "Web Dashboard", "Real-time Logging"]
@@ -539,14 +539,14 @@ const projects: Project[] = [
     color: "text-kurz-red",
     bg: "bg-kurz-red",
     icon: Lock,
-    image: "/assets/osas/overview.jpg",
-    gallery: ["/assets/osas/overview.jpg", "/assets/osas/osasnew.jpg", "/assets/osas/osasnew1.jpg", "/assets/osas/oldosasoverview.jpg", "/assets/osas/oldosasschematics.jpg", "/assets/osas/newosasprototyping.jpg"],
+    image: "assets/osas/overview.jpg",
+    gallery: ["assets/osas/overview.jpg", "assets/osas/osasnew.jpg", "assets/osas/osasnew1.jpg", "assets/osas/oldosasoverview.jpg", "assets/osas/oldosasschematics.jpg", "assets/osas/newosasprototyping.jpg"],
     sections: [
       {
         title: "Overview",
         content: "OSAS (Object Security Automated System) provides a secure environment for stored items, combining physical barriers with digital authentication and sensory monitoring.",
-        image: "/assets/osas/overview.jpg",
-        images: ["/assets/osas/osasnew.jpg", "/assets/osas/osasnew1.jpg"]
+        image: "assets/osas/overview.jpg",
+        images: ["assets/osas/osasnew.jpg", "assets/osas/osasnew1.jpg"]
       },
       {
         title: "Version 1 – Modular Prototype",
@@ -557,14 +557,14 @@ const projects: Project[] = [
           "Environmental monitoring for light and distance",
           "External alert system with high-frequency buzzer"
         ],
-        image: "/assets/osas/oldosasoverview.jpg",
-        images: ["/assets/osas/oldosasprototyping.jpg"],
-        videoUrl: "/assets/osas/oldosas.mp4"
+        image: "assets/osas/oldosasoverview.jpg",
+        images: ["assets/osas/oldosasprototyping.jpg"],
+        videoUrl: "assets/osas/oldosas.mp4"
       },
       {
         title: "System Architecture & Logic",
         content: "The system schematic defines the power distribution and signal routing between the microcontroller and the various security modules.",
-        image: "/assets/osas/oldosasschematics.jpg",
+        image: "assets/osas/oldosasschematics.jpg",
         bullets: [
           "Arduino-driven central processing",
           "Servo motor actuation logic",
@@ -581,8 +581,8 @@ const projects: Project[] = [
           "Sturdier deadbolt alignment",
           "Refined user interface layout"
         ],
-        image: "/assets/osas/osasnew.jpg",
-        images: ["/assets/osas/osasnew1.jpg"]
+        image: "assets/osas/osasnew.jpg",
+        images: ["assets/osas/osasnew1.jpg"]
       },
       {
         title: "Prototyping & Build Process",
@@ -593,7 +593,7 @@ const projects: Project[] = [
           "Enclosure fabrication and finishing",
           "Firmware debugging for error handling"
         ],
-        images: ["/assets/osas/newosasprototyping.jpg", "/assets/osas/newosasprototyping1.jpg"]
+        images: ["assets/osas/newosasprototyping.jpg", "assets/osas/newosasprototyping1.jpg"]
       }
     ],
     features: ["Keypad Security", "Intrusion Sensors", "Auto-Lock Servo"]
@@ -607,15 +607,15 @@ const projects: Project[] = [
     color: "text-kurz-pink",
     bg: "bg-kurz-pink",
     icon: Zap,
-    image: "/assets/sumobot/overview.jpg",
-    gallery: ["/assets/sumobot/overview.jpg", "/assets/sumobot/1v1.jpg", "/assets/sumobot/combat.jpg", "/assets/sumobot/3dmodel.jpg", "/assets/sumobot/casing.jpg"],
+    image: "assets/sumobot/overview.jpg",
+    gallery: ["assets/sumobot/overview.jpg", "assets/sumobot/1v1.jpg", "assets/sumobot/combat.jpg", "assets/sumobot/3dmodel.jpg", "assets/sumobot/casing.jpg"],
     sections: [
       {
         title: "Overview",
         content: "An autonomous combat robot designed for high-stiffness pushing and obstacle detection using embedded intelligence.",
-        image: "/assets/sumobot/overview.jpg",
-        images: ["/assets/sumobot/combat.jpg"],
-        videoUrls: ["/assets/sumobot/sumobotcombat.mp4", "/assets/sumobot/battle.mp4"]
+        image: "assets/sumobot/overview.jpg",
+        images: ["assets/sumobot/combat.jpg"],
+        videoUrls: ["assets/sumobot/sumobotcombat.mp4", "assets/sumobot/battle.mp4"]
       },
       {
         title: "Technical Drawings & 3D Modeling",
@@ -626,8 +626,8 @@ const projects: Project[] = [
           "Balanced center of gravity for improved pushing",
           "Compact footprint compliant with mini-sumo standards"
         ],
-        image: "/assets/sumobot/3dmodel.jpg",
-        images: ["/assets/sumobot/drawings.jpg", "/assets/sumobot/drawings1.jpg"]
+        image: "assets/sumobot/3dmodel.jpg",
+        images: ["assets/sumobot/drawings.jpg", "assets/sumobot/drawings1.jpg"]
       },
       {
         title: "Fabrication & Assembly",
@@ -638,8 +638,8 @@ const projects: Project[] = [
           "Protective casing for electronics",
           "Wiring optimization and power management"
         ],
-        image: "/assets/sumobot/casing.jpg",
-        images: ["/assets/sumobot/development1.jpg", "/assets/sumobot/development2.jpg"]
+        image: "assets/sumobot/casing.jpg",
+        images: ["assets/sumobot/development1.jpg", "assets/sumobot/development2.jpg"]
       },
       {
         title: "System Setup & Programming",
@@ -650,8 +650,8 @@ const projects: Project[] = [
           "Interrupt-driven logic for emergency stops",
           "Aggressive search and attack algorithms"
         ],
-        image: "/assets/sumobot/setup.jpg",
-        videoUrl: "/assets/sumobot/motorprogrammingtest.mp4"
+        image: "assets/sumobot/setup.jpg",
+        videoUrl: "assets/sumobot/motorprogrammingtest.mp4"
       },
       {
         title: "Performance Testing",
@@ -662,8 +662,8 @@ const projects: Project[] = [
           "Surface traction optimization",
           "Wedge efficiency testing"
         ],
-        image: "/assets/sumobot/1v1.jpg",
-        images: ["/assets/sumobot/testing.jpg"]
+        image: "assets/sumobot/1v1.jpg",
+        images: ["assets/sumobot/testing.jpg"]
       }
     ],
     features: ["Autonomous movement", "Opponent detection", "Compact Design"]
@@ -678,13 +678,13 @@ const projects: Project[] = [
     bg: "bg-kurz-orange",
     icon: Layers,
     image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1000",
-    gallery: ["/assets/pcb/9vfinal.jpg", "/assets/pcb/relayfinal.jpg", "/assets/pcb/locksystempcb.jpg", "/assets/pcb/9vfrontsilkscreen.JPG", "/assets/pcb/relayschematics.jpg", "/assets/pcb/locksystemschematics.jpg"],
+    gallery: ["assets/pcb/9vfinal.jpg", "assets/pcb/relayfinal.jpg", "assets/pcb/locksystempcb.jpg", "assets/pcb/9vfrontsilkscreen.JPG", "assets/pcb/relayschematics.jpg", "assets/pcb/locksystemschematics.jpg"],
     sections: [
       {
         title: "Overview",
         content: "A collection of hardware projects focused on circuit efficiency, modular design, and reliable power management.",
-        image: "/assets/pcb/overview.jpg",
-        images: ["/assets/pcb/techstack.jpg"]
+        image: "assets/pcb/overview.jpg",
+        images: ["assets/pcb/techstack.jpg"]
       },
       {
         title: "9V Regulated Power Supply",
@@ -695,9 +695,9 @@ const projects: Project[] = [
           "Fixed 9V output regulation",
           "Compact form factor with mounting holes"
         ],
-        image: "/assets/pcb/9vfinal.jpg",
-        images: ["/assets/pcb/schematic.jpg", "/assets/pcb/9voutline.JPG", "/assets/pcb/9vwithfilledzone.JPG", "/assets/pcb/9vfrontsilkscreen.JPG"],
-        videoUrl: "/assets/pcb/testing.mp4"
+        image: "assets/pcb/9vfinal.jpg",
+        images: ["assets/pcb/schematic.jpg", "assets/pcb/9voutline.JPG", "assets/pcb/9vwithfilledzone.JPG", "assets/pcb/9vfrontsilkscreen.JPG"],
+        videoUrl: "assets/pcb/testing.mp4"
       },
       {
         title: "4-Channel Relay Module",
@@ -708,9 +708,9 @@ const projects: Project[] = [
           "Integrated LED status indicators",
           "Isolated high-voltage and low-voltage paths"
         ],
-        image: "/assets/pcb/relayfinal.jpg",
-        images: ["/assets/pcb/relayschematics.jpg", "/assets/pcb/relaybefore.jpg"],
-        videoUrl: "/assets/pcb/relaytesting.mp4"
+        image: "assets/pcb/relayfinal.jpg",
+        images: ["assets/pcb/relayschematics.jpg", "assets/pcb/relaybefore.jpg"],
+        videoUrl: "assets/pcb/relaytesting.mp4"
       },
       {
         title: "Locking System (Logic Gates)",
@@ -721,8 +721,8 @@ const projects: Project[] = [
           "Integration with external solenoids/servos",
           "Hardware-level security without microcontrollers"
         ],
-        image: "/assets/pcb/locksystempcb.jpg",
-        images: ["/assets/pcb/locksystemschematics.jpg"]
+        image: "assets/pcb/locksystempcb.jpg",
+        images: ["assets/pcb/locksystemschematics.jpg"]
       },
       {
         title: "Fabrication & Prototyping",
@@ -733,8 +733,8 @@ const projects: Project[] = [
           "Soldering and continuity testing",
           "Final casing and system integration"
         ],
-        image: "/assets/pcb/fabrication.jpg",
-        images: ["/assets/pcb/9vbreadboard.jpg", "/assets/pcb/9vprototyping.jpg", "/assets/pcb/9vtesting.jpg", "/assets/pcb/9vcasing.jpg"]
+        image: "assets/pcb/fabrication.jpg",
+        images: ["assets/pcb/9vbreadboard.jpg", "assets/pcb/9vprototyping.jpg", "assets/pcb/9vtesting.jpg", "assets/pcb/9vcasing.jpg"]
       }
     ],
     features: ["KiCad Design", "Power Management", "Discrete Logic"]
@@ -748,15 +748,15 @@ const projects: Project[] = [
     color: "text-kurz-yellow",
     bg: "bg-kurz-yellow",
     icon: Globe,
-    image: "/assets/website/overview.JPG",
-    gallery: ["/assets/website/overview.JPG", "/assets/website/browser.JPG", "/assets/website/dashboard.JPG", "/assets/website/store.JPG", "/assets/website/donation.JPG", "/assets/website/gallery.JPG", "/assets/website/about.JPG"],
+    image: "assets/website/overview.JPG",
+    gallery: ["assets/website/overview.JPG", "assets/website/browser.JPG", "assets/website/dashboard.JPG", "assets/website/store.JPG", "assets/website/donation.JPG", "assets/website/gallery.JPG", "assets/website/about.JPG"],
     externalUrl: "http://olliesvault.page.gd",
     sections: [
       {
         title: "Overview",
         content: "An experimental web project exploring the boundaries of visual design using WordPress and Elementor. The site features a curated set of interactive components themed around pixelated cat art.",
-        image: "/assets/website/overview.JPG",
-        images: ["/assets/website/browser.JPG"]
+        image: "assets/website/overview.JPG",
+        images: ["assets/website/browser.JPG"]
       },
       {
         title: "Internship Context",
@@ -767,7 +767,7 @@ const projects: Project[] = [
           "Focused on thematic asset consistency",
           "Co-developed within a government IT environment"
         ],
-        image: "/assets/website/about.JPG"
+        image: "assets/website/about.JPG"
       },
       {
         title: "Core Interface & Modules",
@@ -778,8 +778,8 @@ const projects: Project[] = [
           "Secure donation tracking simulation",
           "Responsive gallery for pixel art showcase"
         ],
-        image: "/assets/website/dashboard.JPG",
-        images: ["/assets/website/store.JPG", "/assets/website/donation.JPG", "/assets/website/gallery.JPG"]
+        image: "assets/website/dashboard.JPG",
+        images: ["assets/website/store.JPG", "assets/website/donation.JPG", "assets/website/gallery.JPG"]
       },
       {
         title: "Technology & Design Stack",
@@ -790,7 +790,7 @@ const projects: Project[] = [
           "Custom pixelized CSS filters",
           "Thematic asset management and optimization"
         ],
-        images: ["/assets/website/techstack1.jpg", "/assets/website/techstack2.jpg", "/assets/website/techstack3.jpg"]
+        images: ["assets/website/techstack1.jpg", "assets/website/techstack2.jpg", "assets/website/techstack3.jpg"]
       }
     ],
     features: ["Thematic Web Design", "Elementor Integration", "Interactive UX"]
@@ -1497,9 +1497,9 @@ export default function App() {
                   period: "2024",
                   details: [
                     "Underwent specialized training in Web Development and System Management",
-                    "Assisted in Cisco Networking configurations and equipment audits",
+                    "Trained in Cisco Networking configuration",
                     "Gained exposure to QGIS for urban mapping systems and data analysis",
-                    "Participated in Cybersecurity orientation and infrastructure hardening tasks"
+                    "Participated in Cybersecurity orientation and infrastructure hardening training activities"
                   ],
                   main: false
                 }
@@ -1559,10 +1559,10 @@ export default function App() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
-                  { title: "TESDA Programming NC IV", image: "/assets/certs/tesdaprogrammingnciv.jpg" },
-                  { title: "DICT: JavaScript Essentials", image: "/assets/certs/javascriptessentialsfromcisconetworkingacademy.JPG" },
-                  { title: "DICT: Cybersecurity 101", image: "/assets/certs/dictcybersecurity101.JPG" },
-                  { title: "IP Networking Essentials", image: "/assets/certs/ipnetworkingessentialwithbasicciscocommandsfromdict.jpg" }
+                  { title: "TESDA Programming NC IV", image: "certs/tesdaprogrammingnciv.jpg" },
+                  { title: "DICT: JavaScript Essentials", image: "certs/javascriptessentialsfromcisconetworkingacademy.JPG" },
+                  { title: "DICT: Cybersecurity 101", image: "certs/dictcybersecurity101.JPG" },
+                  { title: "IP Networking Essentials", image: "certs/ipnetworkingessentialwithbasicciscocommandsfromdict.jpg" }
                 ].map((cert, i) => (
                   <motion.div 
                     key={i} 
