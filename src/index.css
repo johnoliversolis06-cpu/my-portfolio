@@ -13,6 +13,8 @@
   --color-kurz-cyan: #22d3ee;
   --color-kurz-orange: #fb923c;
   --color-kurz-green: #4ade80;
+  --color-kurz-blue: #3b82f6;
+  --color-kurz-red: #ef4444;
 }
 
 @layer base {

@@ -1,8 +1,10 @@
 import { motion } from "motion/react";
 import { Cpu } from "lucide-react";
 
-export const OlliesVaultLogo = ({ size = "sm" }: { size?: "sm" | "lg" }) => {
-  const isLarge = size === "lg";
+export const OlliesVaultLogo = ({ size = "sm", hideText = false }: { size?: "sm" | "lg" | "xl" | "2xl", hideText?: boolean }) => {
+  const isLarge = size === "lg" || size === "xl" || size === "2xl";
+  const isXL = size === "xl" || size === "2xl";
+  const is2XL = size === "2xl";
 
   return (
     <div className={`flex items-center gap-3 group cursor-pointer`}>
@@ -18,7 +20,7 @@ export const OlliesVaultLogo = ({ size = "sm" }: { size?: "sm" | "lg" }) => {
             repeat: Infinity, 
             ease: "easeInOut" 
           }}
-          className={`${isLarge ? 'w-16 h-16' : 'w-10 h-10'} rounded-xl bg-space-void border border-white/20 flex items-center justify-center relative overflow-hidden group-hover:border-kurz-yellow/50 transition-colors shadow-2xl active:scale-95`}
+          className={`${is2XL ? 'w-36 h-36' : isXL ? 'w-24 h-24' : isLarge ? 'w-16 h-16' : 'w-10 h-10'} rounded-2xl bg-space-void border border-white/20 flex items-center justify-center relative overflow-hidden group-hover:border-kurz-yellow/50 transition-colors shadow-2xl active:scale-95`}
         >
           {/* Circuit Lines Background */}
           <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity">
@@ -37,7 +39,7 @@ export const OlliesVaultLogo = ({ size = "sm" }: { size?: "sm" | "lg" }) => {
             transition={{ duration: 2, repeat: Infinity }}
             className="relative z-10 text-kurz-yellow"
           >
-            <Cpu size={isLarge ? 32 : 20} className="group-hover:rotate-90 transition-transform duration-500" />
+            <Cpu size={is2XL ? 72 : isXL ? 48 : isLarge ? 32 : 20} className="group-hover:rotate-90 transition-transform duration-500" />
           </motion.div>
 
           {/* Scanning Line */}
@@ -53,20 +55,22 @@ export const OlliesVaultLogo = ({ size = "sm" }: { size?: "sm" | "lg" }) => {
       </div>
 
       {/* Text Elements */}
-      <div className="flex flex-col">
-        <span className={`font-black tracking-tighter text-white uppercase font-display leading-none ${isLarge ? 'text-3xl' : 'text-xl'}`}>
-          Ollie's <span className="text-kurz-yellow">Vault</span>
-        </span>
-        {isLarge && (
-          <motion.span 
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 0.5, x: 0 }}
-            className="text-[10px] font-black uppercase tracking-[0.3em] text-kurz-cyan mt-1"
-          >
-            Computer Engineering Projects
-          </motion.span>
-        )}
-      </div>
+      {!hideText && (
+        <div className="flex flex-col">
+          <span className={`font-black tracking-tighter text-white uppercase font-display leading-none ${isLarge ? 'text-3xl' : 'text-xl'}`}>
+            Ollie's <span className="text-kurz-yellow">Vault</span>
+          </span>
+          {isLarge && (
+            <motion.span 
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 0.5, x: 0 }}
+              className="text-[10px] font-black uppercase tracking-[0.3em] text-kurz-cyan mt-1"
+            >
+              Computer Engineering Projects
+            </motion.span>
+          )}
+        </div>
+      )}
     </div>
   );
 };
