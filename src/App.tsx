@@ -23,6 +23,7 @@ import {
   Bus,
   Lock,
   X,
+  Clock,
   Plus
 } from "lucide-react";
 import { TiltCard } from "./components/TiltCard";
@@ -125,6 +126,108 @@ const ProjectCard: React.FC<{ project: Project, index: number, onClick: () => vo
 );
 
 const projects: Project[] = [
+
+  {
+    title: "O-Sync",
+    subtitle: "Activity & Productivity Tracker",
+    desc: "A centralized hub for personal productivity. Bringing to-do list, Pomodoro timer, habits, budget tracking and journals into one cohesive, responsive interface.",
+    longDesc: "OllieSync is a highly responsive web application, utilizing a robust frontend framework. It brings together task management, habit tracking, a Pomodoro timer, and a markdown journal into one cohesive, visually stunning dashboard. Built with React 19, Vite, TypeScript, and Tailwind CSS, and powered by Firebase Firestore and Authentication.",
+    tags: ["React", "TypeScript", "Tailwind CSS", "Firebase", "Framer Motion", "Gemini API"],
+    color: "text-kurz-cyan",
+    bg: "bg-kurz-cyan",
+    icon: Clock,
+    image: "./assets/osync/overview.JPG",
+    externalUrl: "https://olliesync-7b5be.web.app/",
+    gallery: [
+      "./assets/osync/lightmode.JPG", 
+      "./assets/osync/budgettracker.JPG", 
+      "./assets/osync/habiteditor.JPG", 
+      "./assets/osync/addhabits.JPG"
+    ],
+    features: ["Secure Google Auth", "Real-time Database", "Smart Habit Sorting", "Complex UI Animations", "AI Integrations", "Markdown Journaling"],
+    sections: [
+      {
+        title: "Architecture Overview",
+        content: "OllieSync is built as a highly responsive Single Page Application (SPA), utilizing a robust frontend framework paired with a flexible NoSQL serverless database.",
+        bullets: [
+          "Frontend Framework: React 18+ constructed with Vite, utilizing Functional Components and Hooks.",
+          "Backend Substrate: Google Firebase (Authentication & Firestore) providing near real-time state synchronization.",
+          "Routing: react-router-dom for handling view transitions.",
+          "State Management: Compound Component Pattern using React Context API (TimerContext and AuthContext)."
+        ],
+        image: "./assets/osync/lightmode.JPG"
+      },
+      {
+        title: "UI & Styling Guidelines",
+        content: "The application's interface emphasizes absolute focus, clarity, and intentional interactions.",
+        bullets: [
+          "Framework & Layout: Tailwind CSS for low-level utility class styling.",
+          "Color Palette Strategy: Teal (tasks), Purple (habits), and Coral (interruptions) alongside clean surfaces.",
+          "Animation Engine: framer-motion handles layout transitions, staggered entrances, and micro-interactions."
+        ],
+        image: "./assets/osync/dashboard.JPG"
+      },
+      {
+        title: "Timer Module (Pomodoro & OpenTime)",
+        content: "The Timer serves as the operational heart of the workspace, designed with advanced session tracking and entity binding.",
+        bullets: [
+          "Modes: Inherits two independent modes: pomodoro (countdown) and freestyle (count-up).",
+          "Entity Binding: Optionally bind a Task or a Habit ID before starting a timer.",
+          "Tick Engine: Utilizing setInterval and timestamp tracking to mitigate drift latency.",
+          "Session Persistence: Completed sessions are pushed onto Firestore's logs collection with precise metrics."
+        ],
+        image: "./assets/osync/timer.JPG",
+        images: ["./assets/osync/opentime.JPG"]
+      },
+      {
+        title: "Habit Tracking Module",
+        content: "Providing daily consistency structures utilizing visual heatmaps and 'Smart Sort' implementations.",
+        bullets: [
+          "Smart Sort Algorithm: Priorities for uncompleted habits today, alphabetical fallback, and creation date scopes.",
+          "14-Day Heatmaps: Generates visual accountability arrays using historical log mapping.",
+          "Streaks Engine: Calculates continuous unbroken chains with intense fiery visual cues."
+        ],
+        image: "./assets/osync/habits1.JPG",
+        images: ["./assets/osync/habits2.JPG"]
+      },
+      {
+        title: "Task Management",
+        content: "Built for frictionless entry and prioritization.",
+        bullets: [
+          "Visual Rendering: Layout utilizes Framer Motion’s layout and <AnimatePresence> for organic list interactions.",
+          "Direct Handshake to Focus: Each task features a 'Play' node which pushes navigation state to focus, pre-configuring the timer."
+        ],
+        image: "./assets/osync/tasks.JPG"
+      },
+      {
+        title: "Journal System",
+        content: "An introspective journaling platform blending deep markdown flexibility with tagging filters.",
+        bullets: [
+          "Text Engine: Fully adopts react-markdown and @tailwindcss/typography (prose) for deep markdown flexibility.",
+          "Metadata Extraction: Dynamic title extraction and structured mood/tag arrays pushed directly to Firestore."
+        ],
+        image: "./assets/osync/journal.JPG"
+      },
+      {
+        title: "Analytics",
+        content: "The heart of the application's accountability metrics structure. The data is pulled raw from Firestore collections to synthesize user performance.",
+        bullets: [
+          "Focus Time Calculation: Dynamically aggregates timeSpent parameters retrieved from the logs collection schema.",
+          "Remaining vs Completed Density: Compares task completion ratios.",
+          "Real-time Subscribing: Relying on onSnapshot ensuring that analytics globally adjust in real-time."
+        ],
+        image: "./assets/osync/analyticstab.JPG"
+      },
+      {
+        title: "AI Integrations",
+        content: "The application blends seamlessly with Google’s Gemini API, producing lightweight psychological positive reinforcements.",
+        bullets: [
+          "Wisdom Engine: Calls generateQuote() for personalized productivity insights.",
+          "Reward Mechanism: Timer module gets context-aware motivational phrase string based explicitly on the task name completed."
+        ]
+      }
+    ]
+  },
   {
     title: "ARNISENSE",
     subtitle: "Sensor-Integrated Arnis Training System",
@@ -718,7 +821,6 @@ const projects: Project[] = [
         bullets: [
           "Combinational logic-based authentication",
           "PCB layout optimized for minimal signal cross-talk",
-          "Integration with external solenoids/servos",
           "Hardware-level security without microcontrollers"
         ],
         image: "assets/pcb/locksystempcb.jpg",
