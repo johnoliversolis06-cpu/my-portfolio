@@ -24,6 +24,7 @@ import {
   Lock,
   X,
   Clock,
+  PenTool,
   Plus
 } from "lucide-react";
 import { TiltCard } from "./components/TiltCard";
@@ -48,6 +49,7 @@ interface ProjectSection {
   images?: string[];
   videoUrl?: string;
   videoUrls?: string[];
+  pdfs?: { title: string; url: string }[];
 }
 
 interface Project {
@@ -136,7 +138,7 @@ const projects: Project[] = [
     color: "text-kurz-cyan",
     bg: "bg-kurz-cyan",
     icon: Clock,
-    image: "./assets/osync/overview.JPG",
+    image: "./assets/osync/dashboard.JPG",
     externalUrl: "https://olliesync-7b5be.web.app/",
     gallery: [
       "./assets/osync/lightmode.JPG", 
@@ -207,6 +209,16 @@ const projects: Project[] = [
           "Metadata Extraction: Dynamic title extraction and structured mood/tag arrays pushed directly to Firestore."
         ],
         image: "./assets/osync/journal.JPG"
+      },
+      {
+        title: "Budget Tracker",
+        content: "A simple and intuitive budget tracking module seamlessly integrated into the dashboard.",
+        bullets: [
+          "Financial Logging: Easily log and categorize daily expenses and incomes.",
+          "Balance Context: Gives you a clear picture of your finances alongside your daily tasks and habits.",
+          "Visual Overview: Tracks and presents your spending patterns to encourage healthy financial habits."
+        ],
+        image: "./assets/osync/budgettracker.JPG"
       },
       {
         title: "Analytics",
@@ -896,6 +908,49 @@ const projects: Project[] = [
       }
     ],
     features: ["Thematic Web Design", "Elementor Integration", "Interactive UX"]
+  },
+  {
+    title: "AutoCAD Drafts",
+    subtitle: "2D Drafting & Activities",
+    desc: "A collection of precise AutoCAD drawings, encompassing various drafting activities and design exercises.",
+    longDesc: "These are the PDFs and image exports of our AutoCAD drawings created as part of the coursework activities. They focus on precision drafting, technical layouts, and 2D design concepts. The outputs include several laboratory activities alongside final detailed drawings.",
+    tags: ["AutoCAD", "Drafting", "2D Design"],
+    color: "text-red-500",
+    bg: "bg-red-500",
+    icon: PenTool,
+    image: "./assets/autocad/SOLIS_BSCPE_2-B_DRAW-23_FINALS.png",
+    gallery: [
+      "./assets/autocad/SOLIS_BSCPE_2-B_DRAW-23_FINALS(1).jpg",
+      "./assets/autocad/SOLIS_BSCPE_2-B_DRAW-23_FINALS.jpg"
+    ],
+    features: ["Precision Drafting", "Detailed PDF Exports", "Technical Layouts"],
+    sections: [
+      {
+        title: "Final Drawings & Concepts",
+        content: "High-precision CAD representations demonstrating mastery of geometric configurations and standard drafting conventions.",
+        image: "./assets/autocad/SOLIS_BSCPE_2-B_DRAW-23_FINALS.png",
+        images: [
+          "./assets/autocad/SOLIS_BSCPE_2-B_DRAW-23_FINALS(1).jpg",
+          "./assets/autocad/SOLIS_BSCPE_2-B_DRAW-23_FINALS.jpg"
+        ]
+      },
+      {
+        title: "Laboratory PDFs",
+        content: "Detailed assignments and activities captured as standardized PDF plots for review.",
+        pdfs: [
+          { title: "FINAL ACTIVITIES FOR 2D DRAWING", url: "./assets/autocad/SOLIS_BSCpE_2-B_DRAW23_FINAL ACTIVITIES FOR 2D DRAWING.pdf" },
+          { title: "LAB-ACT1", url: "./assets/autocad/SOLIS_BSCpE_2-B_DRAW23_LAB-ACT1.pdf" },
+          { title: "LAB-ACT2", url: "./assets/autocad/SOLIS_BSCpE_2-B_DRAW23_LAB-ACT2.pdf" },
+          { title: "LAB-ACT3", url: "./assets/autocad/SOLIS_BSCpE_2-B_DRAW23_LAB-ACT3.pdf" },
+          { title: "LAB-ACT4", url: "./assets/autocad/SOLIS_BSCpE_2-B_DRAW23_LAB-ACT4.pdf" },
+          { title: "LAB-ACT5", url: "./assets/autocad/SOLIS_BSCpE_2-B_DRAW23_LAB-ACT5.pdf" },
+          { title: "LAB-ACT6", url: "./assets/autocad/SOLIS_BSCpE_2-B_DRAW23_LAB-ACT6.pdf" },
+          { title: "LAB-ACT7", url: "./assets/autocad/SOLIS_BSCpE_2-B_DRAW23_LAB-ACT7.pdf" },
+          { title: "LAB-ACT8", url: "./assets/autocad/SOLIS_BSCpE_2-B_DRAW23_LAB-ACT8.pdf" },
+          { title: "LAB-ACT9", url: "./assets/autocad/SOLIS_BSCpE_2-B_DRAW23_LAB-ACT9.pdf" }
+        ]
+      }
+    ]
   }
 ];
 
@@ -1029,6 +1084,22 @@ const ProjectModal = ({ project, onClose, onZoom }: { project: Project | null, o
                                 </li>
                               ))}
                             </ul>
+                          )}
+                          {section.pdfs && (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+                              {section.pdfs.map((pdf, pidx) => (
+                                <a 
+                                  key={pidx} 
+                                  href={pdf.url} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer"
+                                  className="flex items-center p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
+                                >
+                                  <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 mr-3 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                                  <span className="text-sm text-slate-300 font-medium truncate">{pdf.title}</span>
+                                </a>
+                              ))}
+                            </div>
                           )}
                         </div>
                         <div className="space-y-4">
